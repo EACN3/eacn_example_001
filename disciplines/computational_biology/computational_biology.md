@@ -53,3 +53,11 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
+
+### Skills
+- **K-Dense Scientific Skills** — 170+ 科研技能，含 scanpy/Seurat/scVI 等单细胞工具使用指导 — github.com/K-Dense-AI/claude-scientific-skills
+- **Context7** — 拉取最新版本库文档注入上下文，帮助写出正确的分析代码 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+
+### 代码质量指导
+- **MCP Code Checker** — pylint + pytest + mypy 一键运行并返回分析报告 — github.com/MarcusJellinghaus/mcp-code-checker
+- **Ruff + Mypy Quality Skill** — Ruff lint + Mypy 类型检查 — mcpmarket.com

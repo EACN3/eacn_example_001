@@ -38,3 +38,6 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
+
+### Skills
+- **K-Dense Scientific Skills** — 170+ 科研技能 — github.com/K-Dense-AI/claude-scientific-skills

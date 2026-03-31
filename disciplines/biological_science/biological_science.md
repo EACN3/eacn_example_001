@@ -42,3 +42,10 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
+
+### Skills
+- **K-Dense Scientific Writer** — 论文/海报/基金申请撰写，实时文献检索与引用验证 — github.com/K-Dense-AI/claude-scientific-writer
+- **K-Dense Scientific Skills** — 170+ 科研技能 — github.com/K-Dense-AI/claude-scientific-skills
+- **Scientific Writing Skill** — 两阶段学术写作（先查文献再写正文）、强制图形摘要 — mcpmarket.com
+- **Paper Review Helper Skill** — PDF 转 LaTeX、图表提取、自审预印本、撰写同行评审 — mcpmarket.com
+- **Grammarly MCP** — 语法、拼写、风格检查 — viasocket.com/mcp/grammarly

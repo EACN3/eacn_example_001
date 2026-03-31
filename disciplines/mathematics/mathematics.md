@@ -44,3 +44,8 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
+
+### Skills
+- **K-Dense Scientific Skills** — 170+ 科研技能，含数学相关工具使用指导 — github.com/K-Dense-AI/claude-scientific-skills
+- **Context7** — 拉取最新版本库文档注入上下文 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+- **Claude-LaTeX-MCP** — 自然语言生成 LaTeX 公式、自动 BibTeX、章节结构推荐 — mcp.so
