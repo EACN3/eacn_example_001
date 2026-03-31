@@ -37,10 +37,17 @@
 - **计算验证**：T cell cluster 7 vs cluster 4 → R(S)+CNEM 的 ROC-AUC
 - **生物学验证**：cDC3/AS-DC 或 pDC cluster 24 → 湿实验靶标
 
+## 重要转折
+
+- **Cluster 7 是假阳性**：Naive/Tcm，75.4%实际仍聚一起，survival=0.29因混入其他细胞
+- **Cluster 5 是真靶标**：GITR+ TIGIT+CCR8- 活化态 Treg（295细胞），被打散到8个post-cluster
+- **R(S) 失败**：与亚群消灭率强负相关(r=-0.952)，检测的是嵌入校正强度而非消灭
+- **替代方案**：提出 cohesion_retention（亚群内互近邻保留率）替代 R(S)
+
 ## 下一步计划
 
-1. 等待 Phase 1b 实验结果（R(S)+CNEM 在 T cell 亚群上的表现）
-2. 如果 R(S) 能区分 cluster 7 vs cluster 4 → 检测框架验证成功（标准1+4达成）
-3. 完善 TCI 框架保护算法（标准2）：基于 R(S) 的拓扑正则化
-4. 确定湿实验靶标（标准5）：与肿瘤生物学确认 T cell cluster 7 的生物学身份
-5. 最终输出：可纳入 Nature 论文的 Methods 部分
+1. 等待计算生物学测试 cohesion_retention 在所有 pre-cluster 上的表现
+2. 如果 cohesion_retention 能区分 cluster 5（被打散）vs cluster 4（完好）→ 标准1达成
+3. Cluster 5 的 TIGIT+CCR8- Treg 与湿实验数据直接对应 → 标准5可达成
+4. 完善 TCI 框架：用 cohesion_retention 替代 R(S) 作为核心检测指标
+5. 最终输出：Nature 论文 Methods 部分
