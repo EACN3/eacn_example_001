@@ -42,7 +42,8 @@
 - **Cluster 7 是假阳性**：Naive/Tcm，75.4%实际仍聚一起，survival=0.29因混入其他细胞
 - **Cluster 5 是真靶标**：GITR+ TIGIT+CCR8- 活化态 Treg（295细胞），被打散到8个post-cluster
 - **R(S) 失败**：与亚群消灭率强负相关(r=-0.952)，检测的是嵌入校正强度而非消灭
-- **替代方案**：提出 cohesion_retention（亚群内互近邻保留率）替代 R(S)
+- **NP 成功！**：分层NP（per-celltype内邻域保留率）AUC=0.841, Spearman r=0.613
+- NP 是 DS 弥散分数中权重最高的分量（2:1:1），也是最简单最有效的单指标
 
 ## 下一步计划
 
