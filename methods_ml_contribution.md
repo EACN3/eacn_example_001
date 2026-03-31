@@ -45,6 +45,12 @@ where $\lambda = 0.8$ controls the maximum reduction in integration intensity. C
 
 NP computation requires two *k*-nearest-neighbor searches (pre- and post-integration) and set intersection operations. Using approximate nearest neighbors (FAISS), the total computation for 4.9 million cells is approximately 5 minutes on a single GPU. NP-Guard adds approximately 10-20% overhead to base integration training time.
 
+### Scale-dependent subpopulation loss
+
+A key finding enabled by NP is that subpopulation loss is **scale-dependent**: pDC cells were fully preserved (99% recall) when integrating 8 batches (~105k cells), but severely disrupted (NP = 0.231, lowest across all cell types) when integrating 103 batches (~2.25M cells). This reveals that rare subpopulation loss is not a binary event but a gradual process driven by increasing batch diversity — as more batches are integrated, the density of major cell types in embedding space grows, progressively overwhelming the sparse representation of rare subpopulations in the kNN graph.
+
+This scale-dependence has critical implications: methods benchmarked on small datasets may appear to preserve rare subpopulations, while failing at atlas scale. NP quantifies this phenomenon by measuring neighborhood preservation at any scale.
+
 ### Limitations
 
 NP primarily detects the **dispersion** mode of subpopulation loss (cells scattered into multiple large clusters). The **absorption** mode (intact subpopulation merged into a neighboring large cluster) is harder to detect when expression differences are small. For tissues with high transcriptomic similarity between cell types (e.g., immune cells), complementary metrics such as hierarchical clustering comparison (Robinson-Foulds distance between pre- and post-integration dendrograms) may be needed (see Discussion).
