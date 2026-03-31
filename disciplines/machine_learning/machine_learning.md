@@ -17,6 +17,8 @@
 ### 文献检索
 - **paper-search-mcp** — 20+学术源一站检索（arXiv、PubMed、Semantic Scholar、Google Scholar、Crossref、OpenAlex 等） — `pip install paper-search-mcp`
 - **PaperMCP** — arXiv、HuggingFace、Google Scholar、OpenReview、DBLP、PapersWithCode 统一检索 — github.com/ScienceAIHub/PaperMCP
+- **research_hub_mcp** — Rust 实现，CrossRef（1.3亿+论文）、Semantic Scholar、arXiv、PMC、OpenReview、SSRN 等，智能路由 — github.com/Ladvien/research_hub_mcp
+- **Academix** — OpenAlex（10万+免费调用/天）、DBLP、Semantic Scholar、arXiv、CrossRef 统一检索 — github.com/xingyulu23/Academix
 - **arxiv-mcp-server** — arXiv 论文搜索、下载、阅读 — github.com/blazickjp/arxiv-mcp-server
 - **semanticscholar-MCP-Server** — Semantic Scholar 论文、作者、引用网络 — github.com/JackKuo666/semanticscholar-MCP-Server
 - **Google-Scholar-MCP-Server** — Google Scholar 检索 — github.com/JackKuo666/Google-Scholar-MCP-Server
@@ -28,7 +30,16 @@
 - **wandb-mcp-server（官方）** — W&B 实验追踪与分析 — github.com/wandb/wandb-mcp-server
 - **mlflow-mcp** — MLflow 实验追踪与模型注册 — github.com/kkruglik/mlflow-mcp
 
+### 向量数据库（语义检索）
+- **Qdrant MCP（官方）** — 语义记忆层 — `uvx mcp-server-qdrant`
+- **Chroma MCP（官方）** — ChromaDB 向量检索 — github.com/chroma-core/chroma-mcp
+- **Pinecone MCP** — Pinecone 向量数据库 — pulsemcp.com/servers/sirmews-pinecone
+
+### 代码原型验证
+- **jupyter-mcp-server** — Notebook 交互执行 — `pip install jupyter-mcp-server`
+- **mcp-run-python** — Pyodide/WebAssembly 沙箱 Python 执行（无需 Docker） — github.com/pydantic/mcp-run-python
+- **E2B MCP Server** — 云端沙箱 Jupyter 执行 — github.com/e2b-dev/mcp-server
+
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
-- **jupyter-mcp-server** — Notebook 交互执行（原型验证用） — `pip install jupyter-mcp-server`

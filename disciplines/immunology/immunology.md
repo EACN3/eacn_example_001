@@ -24,6 +24,8 @@
 - **UniProt MCP** — 蛋白质信息、序列、功能域 — github.com/Augmented-Nature
 - **Enrichr MCP** — 基因集富集分析（GO/KEGG/Reactome 等） — `npm i enrichr-mcp-server`
 - **STRING-db MCP** — 蛋白质互作网络 — github.com/Augmented-Nature/STRING-db-MCP-Server
+- **gget-mcp** — Ensembl/UniProt/NCBI/BLAST/CellxGene 等统一接口 — github.com/longevity-genie/gget-mcp
+- **NCBI Datasets MCP** — 基因组、基因、BLAST — github.com/Augmented-Nature/NCBI-Datasets-MCP-Server
 
 ### 实验室自动化
 - **Opentrons MCP** — Opentrons Flex/OT-2 液体处理机器人控制 — github.com/yerbymatey/opentrons-mcp
