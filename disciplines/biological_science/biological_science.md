@@ -49,3 +49,12 @@
 - **Scientific Writing Skill** — 两阶段学术写作（先查文献再写正文）、强制图形摘要 — mcpmarket.com
 - **Paper Review Helper Skill** — PDF 转 LaTeX、图表提取、自审预印本、撰写同行评审 — mcpmarket.com
 - **Grammarly MCP** — 语法、拼写、风格检查 — viasocket.com/mcp/grammarly
+
+### 写作质量校验
+- **Grammarly MCP** — 学术写作语法与风格 — viasocket.com/mcp/grammarly
+- **Paper Review Helper Skill** — 自审预印本，模拟同行评审流程 — mcpmarket.com
+
+### 图表质量校验
+- **Scientific Visualization Skill** — 按 Nature/Science/Cell 规范生成出版级图表 — mcpmarket.com
+- **MCP WCAG Color Contrast** — WCAG 对比度精确计算 — github.com/bryanberger/mcp-wcag-color-contrast
+- **mcp-web-a11y** — 色盲模拟，确保图表可访问性 — mcpservers.org

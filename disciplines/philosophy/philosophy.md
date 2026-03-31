@@ -41,3 +41,7 @@
 
 ### Skills
 - **K-Dense Scientific Skills** — 170+ 科研技能 — github.com/K-Dense-AI/claude-scientific-skills
+
+### 论证质量工具
+- **@modelcontextprotocol/server-sequential-thinking** — 结构化反思推理，用于逐步审查论证链条 — 官方
+- **mcp-neo4j-memory** — 将论证结构存为知识图谱，追踪假设与结论之间的依赖关系 — github.com/neo4j-contrib/mcp-neo4j
