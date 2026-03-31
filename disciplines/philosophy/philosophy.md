@@ -11,3 +11,24 @@
 ## 职责边界
 
 工作在所有学科系统之上的元层面，审视假设、逻辑与方法。
+
+## MCP 工具包
+
+### 文献检索
+- **paper-search-mcp** — 20+学术源检索（含 SSRN、DOAJ、Zenodo 等人文社科源） — `pip install paper-search-mcp`
+- **semanticscholar-MCP-Server** — 论文、引用网络 — github.com/JackKuo666/semanticscholar-MCP-Server
+- **Google-Scholar-MCP-Server** — Google Scholar 检索 — github.com/JackKuo666/Google-Scholar-MCP-Server
+- **mcp-scholarly** — 学术文章精确检索 — github.com/adityak74/mcp-scholarly
+
+### 知识与百科
+- **MediaWiki MCP** — Wikipedia 等 MediaWiki 站点读写检索 — `npm i @professional-wiki/mediawiki-mcp-server`
+- **wikipedia-mcp** — Wikipedia 只读检索，多语言支持 — github.com/Rudra-ravi/wikipedia-mcp
+
+### 深度研究
+- **Perplexity MCP** — 带引用的深度研究与 AI 综述 — pulsemcp.com/servers/perplexity
+- **Brave Search MCP** — Web 搜索（免费 2000 次/月） — github.com/brave/brave-search-mcp-server
+- **Exa AI MCP** — 语义搜索（基于嵌入，找概念相关内容） — pulsemcp.com/servers/mcprouter-exa-ai-search
+
+### 基础工具
+- **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
+- **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方

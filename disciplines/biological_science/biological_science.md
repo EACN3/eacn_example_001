@@ -11,3 +11,27 @@
 ## 职责边界
 
 工作在整个研究的生物学有效性与完整性层面。
+
+## MCP 工具包
+
+### 文献检索
+- **paper-search-mcp** — 20+学术源检索 — `pip install paper-search-mcp`
+- **@cyanheads/pubmed-mcp-server** — PubMed 深度检索、MeSH 术语、全文 — npm
+- **bioRxiv MCP** — 260K+ bioRxiv/medRxiv 预印本 — github.com/openpharma-org/biorxiv-mcp
+- **semanticscholar-MCP-Server** — 论文、引用网络、作者信息 — github.com/JackKuo666/semanticscholar-MCP-Server
+
+### 生物数据库
+- **BioMCP** — 15+生物数据库一站访问 — `pip install biomcp-cli`
+- **gget-mcp** — Ensembl/UniProt/NCBI/BLAST/AlphaFold 等统一接口 — github.com/longevity-genie/gget-mcp
+- **KEGG MCP** — 通路数据 — github.com/Augmented-Nature/KEGG-MCP-Server
+- **Reactome MCP** — 通路数据 — github.com/Augmented-Nature/Reactome-MCP-Server
+
+### 论文撰写
+- **LaTeX Document Compiler MCP** — TeX 编译为 PDF（pdfLaTeX/XeLaTeX/LuaLaTeX） — pulsemcp.com/servers/lachlanbridges-latex
+- **MCP LaTeX Server** — 创建、编辑、验证 LaTeX 文件 — mcpservers.org/servers/RobertoDure/mcp-latex-server
+- **Overleaf MCP** — Overleaf 项目读取与分析 — pulsemcp.com/servers/overleaf
+- **zotero-mcp** — 文献管理、引用、PDF 标注提取、撤稿提醒 — github.com/54yyyu/zotero-mcp
+
+### 基础工具
+- **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
+- **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
