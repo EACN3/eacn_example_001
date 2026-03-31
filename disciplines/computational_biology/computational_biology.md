@@ -29,10 +29,19 @@
 
 ### 蛋白质结构
 - **AlphaFold MCP** — AlphaFold 结构数据库访问与分析 — github.com/Augmented-Nature/AlphaFold-MCP-Server
+- **PDB-MCP-Server** — PDB 结构搜索、下载（PDB/mmCIF/mmTF）、质量指标 — github.com/Augmented-Nature/PDB-MCP-Server
 - **PDBe MCP** — PDB Europe 蛋白质结构数据 — github.com/PDBeurope/PDBe-MCP-Servers
+- **ChatMol Molecule-MCP** — PyMOL/ChimeraX 分子可视化控制 — pulsemcp.com/servers/chatmol-molecule-visualization
 
-### 实验执行
+### 综合平台
+- **BioContextAI** — STRINGDb、Open Targets、Reactome、UniProt、Human Protein Atlas、PanglaoDB、Ensembl、KEGG 等统一访问 — biocontext.ai/registry
+
+### 代码执行
 - **jupyter-mcp-server** — Jupyter Notebook 交互执行、多模态输出 — `pip install jupyter-mcp-server`
+- **mcptools (R)** — R 作为 MCP server：运行 scanpy/Seurat 等 R 代码 — CRAN: mcptools
+- **mcp-run-python** — Pyodide/WebAssembly 沙箱 Python — github.com/pydantic/mcp-run-python
+- **code-sandbox-mcp** — Docker 容器安全代码执行 — github.com/Automata-Labs-team/code-sandbox-mcp
+- **E2B MCP Server** — 云端沙箱 Jupyter 执行 — github.com/e2b-dev/mcp-server
 - **mcp-server-git** — Git 操作 — `pip install mcp-server-git`
 - **@modelcontextprotocol/server-filesystem** — 文件读写 — 官方
 

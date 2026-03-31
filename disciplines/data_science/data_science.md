@@ -16,6 +16,11 @@
 
 ### 数据可视化
 - **mcp-server-chart** — 26+图表类型（AntV 可视化库） — github.com/antvis/mcp-server-chart
+- **Plotly MCP** — 49+图表类型，3D 图、地理图、金融图 — lobehub.com/mcp/arshlibruh-plotly-mcp-cursor
+- **Vega-Lite MCP** — Vega-Lite JSON 规范生成图表，输出 PNG — pulsemcp.com/servers/isaacwasserman-vega-lite-data-visualization
+- **Apache ECharts MCP** — 29 种图表，SVG/PNG 输出，HTML 报告 — pulsemcp.com/servers/apache-echarts
+- **MCP Data Visualization Server** — DuckDB + Pandas + Matplotlib + Seaborn + Plotly 综合 — lobehub.com/mcp/xoniks-mcp-visualization-duckdb
+- **R-Server MCP** — ggplot2 渲染 + R 脚本执行，Docker 隔离，PNG/PDF/SVG 输出 — mcp.so/server/rlang-mcp-server/gdbelvin
 - **plotting-mcp** — CSV 转可视化：折线图、柱状图、饼图、世界地图 — github.com/StacklokLabs/plotting-mcp
 - **penrose-mcp** — 自然语言生成数学图表 — github.com/bmorphism/penrose-mcp
 
@@ -29,8 +34,12 @@
 - **mcp-alchemy** — 多数据库（SQLite/PostgreSQL/MySQL/MariaDB/Oracle 等） — github.com/runekaagaard/mcp-alchemy
 - **mcp-server-sqlite** — SQLite 交互 — `pip install mcp-server-sqlite`
 
-### 实验执行
+### 代码执行
 - **jupyter-mcp-server** — Jupyter Notebook 交互执行、多模态输出（图表/图片） — `pip install jupyter-mcp-server`
+- **mcptools (R)** — R 作为 MCP server：运行 R 代码、访问文档、检查环境 — CRAN: mcptools
+- **mcp-run-python** — Pyodide/WebAssembly 沙箱 Python（无需 Docker） — github.com/pydantic/mcp-run-python
+- **E2B MCP Server** — 云端沙箱 Jupyter 执行 — github.com/e2b-dev/mcp-server
+- **Python REPL MCP** — 容器化 Python 执行，matplotlib 持久化 — pulsemcp.com/servers/tynan-daly-python-repl
 
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方

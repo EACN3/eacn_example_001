@@ -19,6 +19,8 @@
 - **@cyanheads/pubmed-mcp-server** — PubMed 深度检索、MeSH 术语、全文 — npm
 - **bioRxiv MCP** — 260K+ bioRxiv/medRxiv 预印本 — github.com/openpharma-org/biorxiv-mcp
 - **semanticscholar-MCP-Server** — 论文、引用网络、作者信息 — github.com/JackKuo666/semanticscholar-MCP-Server
+- **research_hub_mcp** — CrossRef（1.3亿+论文）等，智能路由 — github.com/Ladvien/research_hub_mcp
+- **PubTator MCP** — PubMed 文章 NLP 实体标注 — github.com/QuentinCody/pubtator-mcp-server
 
 ### 生物数据库
 - **BioMCP** — 15+生物数据库一站访问 — `pip install biomcp-cli`
@@ -31,6 +33,11 @@
 - **MCP LaTeX Server** — 创建、编辑、验证 LaTeX 文件 — mcpservers.org/servers/RobertoDure/mcp-latex-server
 - **Overleaf MCP** — Overleaf 项目读取与分析 — pulsemcp.com/servers/overleaf
 - **zotero-mcp** — 文献管理、引用、PDF 标注提取、撤稿提醒 — github.com/54yyyu/zotero-mcp
+- **mcp-research** — 文献推荐（内容/引用/混合）+ Zotero 集成 — github.com/francojc/mcp-research
+
+### 网页阅读
+- **Firecrawl MCP** — URL 转 Markdown、全站爬取 — github.com/firecrawl/firecrawl-mcp-server
+- **Jina AI MCP** — URL 转 Markdown — github.com/jina-ai/MCP
 
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方

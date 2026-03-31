@@ -16,9 +16,11 @@
 
 ### 文献检索
 - **paper-search-mcp** — 20+学术源一站检索 — `pip install paper-search-mcp`
+- **research_hub_mcp** — CrossRef（1.3亿+论文）、Semantic Scholar、arXiv、PMC 等，智能路由 — github.com/Ladvien/research_hub_mcp
 - **arxiv-mcp-server** — arXiv 论文搜索、下载、阅读 — github.com/blazickjp/arxiv-mcp-server
 - **arxiv-latex-mcp** — 获取 arXiv 论文 LaTeX 源码（精确读取数学公式） — github.com/takashiishida/arxiv-latex-mcp
 - **semanticscholar-MCP-Server** — Semantic Scholar 论文与引用网络 — github.com/JackKuo666/semanticscholar-MCP-Server
+- **Academix** — OpenAlex、DBLP、Semantic Scholar、arXiv、CrossRef 统一检索 — github.com/xingyulu23/Academix
 
 ### 符号计算
 - **sympy-mcp** — SymPy 符号代数：方程求解、微积分、线性代数、化简（有状态工作表） — github.com/sdiehl/sympy-mcp
@@ -26,7 +28,9 @@
 - **mcp-sympy** — SymPy 全功能：微积分、矩阵、数论、特殊函数 — glama.ai/mcp/servers/daedalus/mcp-sympy
 - **symbolica-mcp** — NumPy + SciPy + SymPy + Pandas 综合 — github.com/YuChenSSR/symbolica-mcp
 - **Wolfram Alpha MCP** — Wolfram Alpha API 复杂计算 — `docker pull mcp/wolfram-alpha`
+- **wolframalpha-llm-mcp** — WolframAlpha LLM API 结构化知识与数学求解 — github.com/Garoth/wolframalpha-llm-mcp
 - **Wolfram-MCP** — 完整 Wolfram Language（不只是 Alpha） — github.com/paraporoco/Wolfram-MCP
+- **MCPServer Paclet** — Wolfram 官方 MCP server paclet — Wolfram Paclet Repository
 
 ### LaTeX
 - **LaTeX Document Compiler MCP** — TeX 编译为 PDF（pdfLaTeX/XeLaTeX/LuaLaTeX） — pulsemcp.com/servers/lachlanbridges-latex
