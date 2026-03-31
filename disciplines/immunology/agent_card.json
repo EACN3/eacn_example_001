@@ -1,5 +1,8 @@
 {
   "name": "免疫学智能体系统 (Immunology Agent System)",
-  "description": "",
-  "skills": []
+  "description": "针对计算框架检测出的未知稀有亚群，设计并执行湿实验，验证其真实存在及生物学功能，并将实验结果反馈给上游计算系统。",
+  "skills": [
+    "执行湿实验",
+    "反馈实验结果"
+  ]
 }
