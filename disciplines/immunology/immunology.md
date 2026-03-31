@@ -34,3 +34,6 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-filesystem** — 文件读写 — 官方
+
+### Skills
+- **K-Dense Scientific Skills** — 170+ 科研技能，含实验协议相关指导 — github.com/K-Dense-AI/claude-scientific-skills

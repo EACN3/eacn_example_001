@@ -44,3 +44,16 @@
 ### 基础工具
 - **@modelcontextprotocol/server-memory** — 持久化知识图谱记忆 — 官方
 - **@modelcontextprotocol/server-sequential-thinking** — 结构化多步推理 — 官方
+
+### Skills
+- **Scientific Visualization Skill** — 按 Nature/Science/Cell 规范生成出版级图表，内置期刊样式配置 — mcpmarket.com
+- **K-Dense Scientific Skills** — 170+ 科研技能，含 matplotlib/seaborn/ggplot2 等绘图库使用指导 — github.com/K-Dense-AI/claude-scientific-skills
+- **Context7** — 拉取最新版本库文档注入上下文 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+
+### 图表质量校验
+- **MCP WCAG Color Contrast** — WCAG 对比度精确计算（CC 自己算经常不准） — github.com/bryanberger/mcp-wcag-color-contrast
+- **mcp-web-a11y** — 色盲模拟（红/绿/蓝色盲），确保图表可访问性 — mcpservers.org
+
+### 代码质量指导
+- **MCP Code Checker** — pylint + pytest + mypy 一键运行并返回分析报告 — github.com/MarcusJellinghaus/mcp-code-checker
+- **Ruff + Mypy Quality Skill** — Ruff lint + Mypy 类型检查 — mcpmarket.com
