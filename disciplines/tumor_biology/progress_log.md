@@ -45,11 +45,28 @@
    - 4095细胞，survival=0.29，严重被打散
    - 最可能是Tpex，等待marker表达数据确认
 
-### 进行中
+9. **T cell cluster 7 排除** — 机器学习提供marker数据
+   - TCF7=57%, CCR7=36%, PD-1=3.4%, TOX=3.9% → Naive/Tcm，不是Tpex
+   - survival=0.29 是假阳性（75%细胞实聚在post-cluster 0，被其他细胞稀释）
 
-- 等待计算生物学提交t-mnf452i2结果
-- 等待机器学习发来cluster 7的marker表达数据
-- 最新标准5候选排序：T cell cluster 5 (GITR⁺ Treg) > T cell cluster 7 > pDC cluster 24
+10. **T cell cluster 5 最终定性** — 标准5证据链闭合
+    - 皮肤癌特异的 GITR⁺ 活化态 Treg 功能社区
+    - 含295个TIGIT⁺CCR8⁻ Treg (20.2%)，被打散到8个post-cluster
+    - 证据链：计算发现→被消灭(survival=0.39)→湿实验验证(免疫抑制功能)→临床意义(anti-GITR+anti-TIGIT)
+    - 生物科学、机器学习均同意此为标准5最终答案
+
+11. **系统性亚群破坏全景** — 论文框架升级
+    - 所有8种celltype都有亚群被打散
+    - T cell 42%, Mast 38%, Macrophage cluster 18 survival=21.6%
+    - 论文定位：从"保护单个亚群"升级为"揭示系统性破坏"
+
+### 里程碑：标准5证据链闭合 ✅
+
+### 待推进
+
+- 等待生物科学分配Nature论文肿瘤生物学段落撰写
+- 可能需要对Macrophage cluster 18做肿瘤生物学解读作为补充案例
+- 全量225万数据验证仍待计算生物学完成
 
 ### 关键洞察
 
