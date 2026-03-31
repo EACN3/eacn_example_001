@@ -25,9 +25,22 @@
   - 实验A：cluster 24（93细胞）的 DS/CNEM 验证
   - 实验B：系统性扫描整合中被打散的小簇
 
+## 关键进展（来自数据科学+肿瘤生物学交叉分析）
+
+- T cell cluster 7（4095细胞，survival=0.29）是真正被消灭的亚群，完美阳性对照
+- T cell cluster 4（survival=0.93）是完美阴性对照
+- TIGIT+CCR8- Treg（1922细胞）未被消灭（R(S)=0.73）→ 细胞数足够+表达独特=安全
+- 肿瘤生物学6个高危候选中，cDC3/AS-DC（<0.5%，边界模糊）和 pDC cluster 24 最可能被消灭
+
+## 验证策略（两层）
+
+- **计算验证**：T cell cluster 7 vs cluster 4 → R(S)+CNEM 的 ROC-AUC
+- **生物学验证**：cDC3/AS-DC 或 pDC cluster 24 → 湿实验靶标
+
 ## 下一步计划
 
-1. 等待实验结果，根据 DS 在真正被消灭目标上的表现调整框架
-2. 如果 DS 有效 → 完善 TCI 框架的正则化项，提交给数学智能体做收敛性分析
-3. 如果 DS 也失效 → 转向双空间图对比（方案5）或探索其他路径
-4. 最终输出：可纳入 Nature 论文的 Methods 部分——检测框架 + 保护算法的完整描述
+1. 等待 Phase 1b 实验结果（R(S)+CNEM 在 T cell 亚群上的表现）
+2. 如果 R(S) 能区分 cluster 7 vs cluster 4 → 检测框架验证成功（标准1+4达成）
+3. 完善 TCI 框架保护算法（标准2）：基于 R(S) 的拓扑正则化
+4. 确定湿实验靶标（标准5）：与肿瘤生物学确认 T cell cluster 7 的生物学身份
+5. 最终输出：可纳入 Nature 论文的 Methods 部分
