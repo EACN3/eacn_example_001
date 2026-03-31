@@ -49,3 +49,7 @@
 ### Skills
 - **K-Dense Scientific Skills** — 170+ 科研技能，含肿瘤生物学相关工具使用指导 — github.com/K-Dense-AI/claude-scientific-skills
 - **Context7** — 拉取最新版本库文档注入上下文 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`
+
+### 解读质量校验
+- **Paper Review Helper Skill** — 自审解读是否有文献支撑，模拟同行评审 — mcpmarket.com
+- **PubTator MCP** — NLP 实体标注，交叉核验基因/蛋白/疾病命名是否准确 — github.com/QuentinCody/pubtator-mcp-server

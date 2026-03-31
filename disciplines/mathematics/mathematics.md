@@ -49,3 +49,8 @@
 - **K-Dense Scientific Skills** — 170+ 科研技能，含数学相关工具使用指导 — github.com/K-Dense-AI/claude-scientific-skills
 - **Context7** — 拉取最新版本库文档注入上下文 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`
 - **Claude-LaTeX-MCP** — 自然语言生成 LaTeX 公式、自动 BibTeX、章节结构推荐 — mcp.so
+
+### 推导质量校验
+- **lean-lsp-mcp** — Lean 4 实时证明状态反馈，可用于验证推导正确性 — Leanstral 项目
+- **mcp-coq-lsp** — Coq 证明助手，LLM 与形式化验证系统的桥梁 — github.com/scidonia/mcp-coq-lsp
+- **sympy-mcp** — 符号计算验证：方程求解、化简结果可用于交叉核验手动推导 — github.com/sdiehl/sympy-mcp

@@ -61,3 +61,7 @@
 ### 代码质量指导
 - **MCP Code Checker** — pylint + pytest + mypy 一键运行并返回分析报告 — github.com/MarcusJellinghaus/mcp-code-checker
 - **Ruff + Mypy Quality Skill** — Ruff lint + Mypy 类型检查 — mcpmarket.com
+
+### 实验可复现性指导
+- **mcp-server-git** — 版本控制，确保每次实验结果可追溯 — `pip install mcp-server-git`
+- **Context7** — 拉取库文档，确保 API 调用与当前版本一致 — `claude mcp add context7 -- npx -y @upstash/context7-mcp`

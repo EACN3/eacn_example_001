@@ -37,3 +37,7 @@
 
 ### Skills
 - **K-Dense Scientific Skills** — 170+ 科研技能，含实验协议相关指导 — github.com/K-Dense-AI/claude-scientific-skills
+
+### 实验报告质量指导
+- **Scientific Writing Skill** — 结构化实验结果撰写 — mcpmarket.com
+- **Grammarly MCP** — 实验报告语法与表达 — viasocket.com/mcp/grammarly
