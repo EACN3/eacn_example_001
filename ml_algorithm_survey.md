@@ -175,7 +175,7 @@ L_total = L_integration + λ₁ * L_RTD + λ₂ * L_curvature
 
 针对490万细胞规模：
 - 持久同调的直接计算在大规模下不可行 → 使用**子采样 + 持久同调近似**（如 Ripser 的稀疏模式）
-- Ollivier-Ricci曲率的精确计算需要解最优传输 → 使用**有效电阻曲率**（Efficient Curvature, Fei et al., 2025）作为替代，计算复杂度从 O(n³) 降至线性
+- Ollivier-Ricci曲率的精确计算需要解最优传输 → 使用**有效电阻曲率**（Efficient Curvature, Fei et al., 2025）作为替代，计算复杂度从 O(n³) 降至线性。进一步地，**Resistance Curvature Flow (RCF)**（Fei et al., 2026, arXiv:2601.08149）已证明有效电阻曲率在几何优化能力上与 ORC 可比，同时实现 100 倍以上加速，可直接用于 TCI 框架的拓扑正则化项
 - RTD 可通过采样近似计算
 - 整体框架可分块执行：先对数据进行粗聚类，在每个粗簇内独立运行拓扑分析
 
@@ -237,21 +237,22 @@ L_total = L_integration + λ₁ * L_RTD + λ₂ * L_curvature
 18. Saidi TL, et al. Recovering manifold structure using Ollivier-Ricci curvature (ORC-ManL). **arXiv:2410.01149**, 2024.
 19. Fei C, et al. Efficient curvature-aware graph network (Effective Resistance Curvature). **arXiv:2511.01443**, 2025.
 20. Nguyen K, et al. Revisiting over-smoothing and over-squashing using Ollivier-Ricci curvature. **arXiv:2211.15779**, 2022.
+21. Fei C, et al. Dynamic graph structure learning via resistance curvature flow (RCF). **arXiv:2601.08149**, 2026.
 
 ### 表示拓扑
-21. Trofimov I, et al. Learning topology-preserving data representations (RTD-AE). **arXiv:2302.00136**, 2023.
+22. Trofimov I, et al. Learning topology-preserving data representations (RTD-AE). **arXiv:2302.00136**, 2023.
 
 ### 最优传输
-22. Klein D, et al. GENOT: Entropic (Gromov) Wasserstein flow matching with applications to single-cell genomics. **arXiv:2310.09254**, 2023.
-23. Eyring L, et al. Unbalancedness in neural Monge maps improves unpaired domain translation. **arXiv:2311.15100**, 2023.
+23. Klein D, et al. GENOT: Entropic (Gromov) Wasserstein flow matching with applications to single-cell genomics. **arXiv:2310.09254**, 2023.
+24. Eyring L, et al. Unbalancedness in neural Monge maps improves unpaired domain translation. **arXiv:2311.15100**, 2023.
 
 ### 对比学习与开放集
-24. Aminzadeh F, et al. SAFAARI: Contrastive adversarial open-set domain adaptation for single-cell integration & annotation. **Genomics, Proteomics & Bioinformatics**, 2026.
+25. Aminzadeh F, et al. SAFAARI: Contrastive adversarial open-set domain adaptation for single-cell integration & annotation. **Genomics, Proteomics & Bioinformatics**, 2026.
 
 ### 基础模型
-25. Kendiukhov I. What topological and geometric structure do biological foundation models learn? Evidence from 141 hypotheses. **arXiv:2602.22289**, 2026.
+26. Kendiukhov I. What topological and geometric structure do biological foundation models learn? Evidence from 141 hypotheses. **arXiv:2602.22289**, 2026.
 
 ### 评估方法
-26. Shen X, et al. A benchmark of semi-supervised scRNA-seq integration methods in real-world scenarios. **PLOS Computational Biology**, 2026.
-27. Zappia L, et al. Feature selection methods affect the performance of scRNA-seq data integration and querying. **Nature Methods**, 2025.
-28. Babcock BR, et al. Data matrix normalization and merging strategies minimize batch-specific systemic variation in scRNA-seq data (CMS metric). **bioRxiv**, 2021.
+27. Shen X, et al. A benchmark of semi-supervised scRNA-seq integration methods in real-world scenarios. **PLOS Computational Biology**, 2026.
+28. Zappia L, et al. Feature selection methods affect the performance of scRNA-seq data integration and querying. **Nature Methods**, 2025.
+29. Babcock BR, et al. Data matrix normalization and merging strategies minimize batch-specific systemic variation in scRNA-seq data (CMS metric). **bioRxiv**, 2021.
