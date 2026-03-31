@@ -79,8 +79,9 @@
 - "Detecting the undetectable: label-free identification of rare subpopulation loss in single-cell batch integration"
 - "Beyond known labels: structural change detection reveals hidden casualties of batch integration"
 - "The blind spot of batch integration: an unsupervised framework for protecting unknown rare subpopulations"
+- "Neighborhood preservation reveals hidden casualties of single-cell batch integration" ← **新推荐**
 
-推荐第三个——"blind spot"直接传达范式盲区的核心信息。
+推荐第四个——直接点明核心方法(NP)和核心发现(hidden casualties)，简洁有力。第三个("blind spot")作为备选。
 
 ---
 
@@ -91,17 +92,22 @@
 - Panel B：聚拢 vs 弥散的数据结构差异示意
 - Panel C：概念转换——从"类型监测"到"结构监测"
 
-### Figure 2：CNEM失败与洞察
-- Panel A：胰腺数据上CNEM有效
-- Panel B：免疫数据上CNEM失败
-- Panel C：失败原因的几何解释（表达空间重叠）
-- Panel D：路径转向——结构检测方法
+### Figure 2：三代指标进化（核心方法学Figure）
+- Panel A：CNEM在胰腺数据有效(AUC 0.78) → 免疫数据失败(AUC 0.37)。失败原因：间接代理（表达不匹配）
+- Panel B：R(S)与消灭率强负相关(r=-0.952)。失败原因：间接代理（位移大小）
+- Panel C：NP成功(AUC 0.837)。成功原因：直接测量（邻域保持）
+- Panel D：从代理测量到直接测量的认识论进化示意图
 
-### Figure 3：三条指标线的关系图
-- CNEM（快速筛查，适用于转录组差异大的数据）
-- DS弥散分数（结构检测，不依赖表达距离）
-- R(S)/M_vanish（理论支撑，拓扑方法）
-- 三者何时互补、何时冗余
+### Figure 3：NP-Guard保护策略
+- Panel A：NP监控示意——训练过程中实时追踪每个细胞的邻域保留率
+- Panel B：高风险区域识别——NP骤降的区域自动降低整合力度
+- Panel C：保护效果对比——有/无NP-Guard的稀有亚群存活率
+
+### Figure 4：结构破坏而非类型消灭
+- Panel A：TIGIT⁺CCR8⁻ Treg整体未被消灭(1922细胞)
+- Panel B：但含该亚群的功能社区(Cluster 5, survival=0.39)被打散
+- Panel C：湿实验验证——TIGIT⁺ Treg具有免疫抑制功能（CD69↓、IFN-γ↓、杀伤力↓）
+- Panel D：Waddington景观类比——谷底还在但地形被夷平
 
 ---
 
