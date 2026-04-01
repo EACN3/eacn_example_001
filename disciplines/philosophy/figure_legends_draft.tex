@@ -1,0 +1,33 @@
+% Figure Legends Draft — Philosophy Agent
+% Based on Nature/Cell/Science standard: 200-400 words per figure
+% Each legend: bold title sentence + panel descriptions + statistical notes
+
+\paragraph{Figure 1 $|$ The majority bias: a cascade of implicit assumptions in standard single-cell workflows systematically excludes rare subpopulation signals.}
+\textbf{a}, [PLACEHOLDER: Study design schematic showing the 9-step majority bias pipeline from raw data to downstream analysis, with rare subpopulation signal attenuation at each step.]
+\textbf{b}, Percentage of known marker genes excluded by standard HVG selection (top 2,000 genes) for each rare cell type. Numbers indicate excluded/total markers. Epsilon cells (pancreas) lose 100\% of markers; pDC loses 3/7.
+\textbf{c}, Enrichment of doublet calls (Scrublet, expected\_doublet\_rate=0.06) for each cell type relative to dataset average. Dashed line indicates no enrichment (1.0$\times$). Mast cells show 4.3$\times$ enrichment; pDC shows 2.8$\times$.
+\textbf{d}, Signal retention across pipeline steps for rare ($<$1\%, circles) versus common ($>$5\%, squares) cell types, showing cumulative signal loss from raw data through quality control, HVG selection, PCA, integration (Harmony), and clustering. Data from pan-cancer immune atlas (2.26M cells, 103 batches).
+
+\paragraph{Figure 2 $|$ Neighborhood Preservation (NP) detects subpopulation disruption that standard benchmarks miss.}
+\textbf{a}, NP score versus subcluster survival rate for 167 pre-integration subclusters across 8 immune cell types (colors, see legend). Dashed line: survival = 0.5 threshold. Each point represents one Leiden subcluster.
+\textbf{b}, Receiver operating characteristic (ROC) curves for NP as a predictor of subcluster dispersal (survival $<$ 0.5). Red: unsupervised NP (AUC = 0.84); blue: supervised NP using cell-type labels (AUC = 0.84). Unsupervised NP matches supervised performance.
+\textbf{c}, NP score distribution for survived versus dispersed subclusters (Wilcoxon rank-sum test). Boxes: median $\pm$ interquartile range; whiskers: 1.5$\times$ IQR.
+\textbf{d}, Cross-method consistency: NP scores from Harmony versus Scanorama integration on the same data (Spearman $r$ shown). Points colored by cell type.
+
+\paragraph{Figure 3 $|$ RASI improves subpopulation preservation while maintaining batch correction quality across scales.}
+\textbf{a}, Mean NP by cell type on 4.8M-cell pan-cancer atlas (101 datasets, 11 cell types). Colored bars: immune cell types; grey bars: non-immune.
+\textbf{b}, Pareto frontier of NP versus batch mixing (ASW) for varying BD weighting strengths ($\alpha$ = 0--5). Larger circles indicate higher $\alpha$. RASI ($\alpha$ = 2) achieves simultaneous improvement in both metrics.
+\textbf{c}, Subcluster survival: standard Harmony (x-axis) versus RASI (y-axis). Points above diagonal indicate RASI improvement. Dashed lines: survival = 0.5 threshold. Colors: cell type.
+\textbf{d}, Number of dispersed subclusters (survival $<$ 0.5): standard Harmony (48/167) versus RASI (8/167). 42 subclusters rescued. $n$ = 167 pre-integration Leiden subclusters from 8 immune cell types.
+
+\paragraph{Figure 4 $|$ Rare subpopulation destruction is a scale-dependent emergent phenomenon.}
+\textbf{a}, NP versus number of integrated batches (5--103) for 8 immune cell types. Each point represents the mean NP across all subclusters of that type. Mast cells show 42\% NP drop between 5 and 10 batches (annotated). [Error bars: s.d. from 3 random batch samplings at each scale point — TO BE ADDED.]
+\textbf{b}, Total NP drop (5 batches $\to$ 103 batches) ranked by cell type. Numbers indicate start$\to$end NP values. Mast (0.93$\to$0.24) and pDC (0.63$\to$0.23) show largest drops.
+
+\paragraph{Figure 5 $|$ Biological validation: TIGIT$^+$CCR8$^-$ Treg functional community disrupted by integration.}
+\textbf{a}, Surface marker composition of T cell Cluster 5 ($n$ = 1,464 cells): FOXP3$^+$ (28\%), TIGIT$^+$ (65\%), GITR$^+$ (70\%), CCR8$^+$ (5\%).
+\textbf{b}, CD8$^+$ T cell activation (CD69$^+$ percentage) in co-culture with or without TIGIT$^+$CCR8$^-$ Tregs. 4.1-fold reduction ($p < 0.001$, two-tailed unpaired Student's $t$-test, $n \geq 3$ independent experiments). Error bars: mean $\pm$ s.d.
+\textbf{c}, IFN-$\gamma$ secretion (ELISA) in co-culture. 2.7-fold reduction ($p < 0.001$). Error bars: mean $\pm$ s.d.
+\textbf{d}, Tumor cell killing rate (LDH release, A549 target cells, E:T = 10:1). 3.3-fold reduction ($p < 0.001$). Error bars: mean $\pm$ s.d.
+\textbf{e}, Distribution of FOXP3$^+$GITR$^+$TIGIT$^+$CCR8$^-$ triple-positive cells across T cell subclusters. Daggers ($\dagger$) indicate dispersed subclusters (survival $<$ 0.5). Cluster 5 ($\dagger$) contains the highest fraction among dispersed clusters.
+All $p$-values: two-tailed unpaired Student's $t$-test with Benjamini--Hochberg correction. $n \geq 3$ independent biological replicates.
