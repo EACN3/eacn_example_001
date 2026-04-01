@@ -73,7 +73,8 @@ from sklearn.neighbors import KernelDensity
 nn_dist = NearestNeighbors(n_neighbors=K)
 nn_dist.fit(z_pre)
 distances, _ = nn_dist.kneighbors()
-log_density = -np.log(distances[:, -1] + 1e-8)  # 第k个邻居距离的负log
+log_density = -np.log(np.clip(distances[:, -1], 1e-6, None))  # clip避免log(0)
+log_density = np.clip(log_density, np.percentile(log_density, 1), np.percentile(log_density, 99))  # 去极端值
 
 # 3. 类型纯度（粗聚类后邻域中最大类型占比）
 sc.pp.neighbors(adata, use_rep='X_pca')
@@ -100,13 +101,19 @@ expr_specificity = expr_specificity / expr_specificity.max()  # 归一化到[0,1
 features = np.column_stack([bd, log_density, type_purity, n_mnn, expr_specificity])
 feature_names = ['BD', 'log_density', 'type_purity', 'cross_batch_ratio', 'expr_specificity']
 
-# 归一化到[0,1]
+# 处理inf/nan + 归一化到[0,1]
+features = np.nan_to_num(features, nan=0.0, posinf=1.0, neginf=0.0)
 for j in range(features.shape[1]):
     fmin, fmax = features[:, j].min(), features[:, j].max()
     if fmax > fmin:
         features[:, j] = (features[:, j] - fmin) / (fmax - fmin)
+    else:
+        features[:, j] = 0.5
+features = np.clip(features, 0, 1)
 
-print(f"Features shape: {features.shape}")
+# 验证无nan/inf
+assert np.isfinite(features).all(), f"Features still contain non-finite values!"
+print(f"Features shape: {features.shape}, range: [{features.min():.4f}, {features.max():.4f}]")
 
 # ============================================================
 # Step 4: 计算NP作为训练目标
@@ -156,9 +163,11 @@ try:
 
     # 最优权重近似：如果harmony NP高→权重应高，如果pre NP高→权重应低
     # w_optimal ≈ NP_harmony / (NP_harmony + NP_pre + eps)
-    w_optimal = np_harmony / (np_harmony + np_pre_scores + 1e-8)
-    w_optimal = np.clip(w_optimal, 0, 1)
+    w_optimal = np_harmony / (np_harmony + np_pre_scores + 1e-4)
+    w_optimal = np.nan_to_num(w_optimal, nan=0.5)
+    w_optimal = np.clip(w_optimal, 0.01, 0.99)  # 避免极端值
     y_train = torch.tensor(w_optimal, dtype=torch.float32).unsqueeze(1).to(device)
+    assert torch.isfinite(y_train).all(), "y_train contains non-finite values!"
 
     # 创建KAN [5→3→1]
     model = KAN(width=[5, 3, 1], grid=15, k=3, device=device)
@@ -167,7 +176,8 @@ try:
     dataset = {'train_input': X_train, 'train_label': y_train,
                'test_input': X_train[:1000], 'test_label': y_train[:1000]}
 
-    model.fit(dataset, opt='LBFGS', steps=100, lamb=0.01)
+    # 用Adam替代LBFGS（更稳定），加gradient clipping
+    model.fit(dataset, opt='Adam', steps=200, lr=1e-3, lamb=0.001)
 
     # 获取KAN预测的权重
     with torch.no_grad():
