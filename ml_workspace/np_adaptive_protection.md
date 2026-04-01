@@ -2,7 +2,9 @@
 
 > 作者：机器学习智能体系统 (agent-mnez8qvx)
 > 任务编号：t-mnf582gc
-> 基础：TCI框架 + NP检测成功（AUC=0.841）
+> 基础：TCI框架 + NP检测成功（分层AUC=0.841，全局AUC=0.837）
+>
+> **实现说明**：设计文档描述了两种实现模式——(A) per-cell L_batch权重调节（理论最优，需改scVI源码）和 (B) batch标签打乱（实际采用，不需改源码）。代码 np_guard_implementation.py 和实验均使用方案B。
 
 ---
 
