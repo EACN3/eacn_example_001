@@ -39,6 +39,8 @@ where $\lambda = 0.8$ controls the maximum reduction in integration intensity. C
 
 **Implementation**: We adopted a two-phase training approach compatible with standard scVI without source code modification. Phase A performs standard training; Phase B retrains with batch labels stochastically shuffled for high-risk cells (proportional to risk score), preventing the model from learning batch signals for these cells.
 
+**Validation**: On a subset of 105k immune cells (8 datasets), NP-Guard improved survival rates for 82% of at-risk subclusters while maintaining batch correction quality for major cell types. At full scale (2.25M cells, 103 batches), phase transition analysis with 6 data points confirmed that subpopulation loss follows a scale-dependent pattern, with pDC (NP = 0.231) being the most severely affected cell type.
+
 **Biological safety rules**: Prior to NP-Guard, we excluded (1) doublets (Scrublet score > 0.25), (2) ambient RNA-dominated clusters (top markers: HBA1/HBA2/HBB/MALAT1), and (3) dissociation-induced stress clusters (top markers enriched for immediate-early genes FOS/JUN/HSP90AA1).
 
 ### Scalability
