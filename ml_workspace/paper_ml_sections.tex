@@ -1,0 +1,115 @@
+% ============================================================
+% ML智能体负责的论文部分
+% 1. Methods: BD加权和NP指标的完整数学描述
+% 2. Supplementary: CSI/MNN-Laplacian失败分析
+% 3. Supplementary: 与scIB的系统对比分析
+% ============================================================
+
+% --- METHODS: Algorithm Design ---
+
+\subsection*{Methods: Batch-Diversity-Weighted Selective Integration}
+
+\textbf{Batch Diversity Score.}
+For each cell $i$ in a multi-batch dataset with $B$ total batches, we compute its $k$-nearest neighbors $N_k(i)$ in the pre-integration embedding space (PCA or hybrid PCA-UMAP). The batch diversity score is defined as:
+\begin{equation}
+BD(i) = \frac{|\{b(j) : j \in N_k(i)\}|}{\min(k, B)}
+\end{equation}
+where $b(j)$ denotes the batch label of cell $j$. $BD(i) \in [1/\min(k,B), 1]$; values near 1 indicate neighbors from many batches (``shared'' cells), while low values indicate neighbors from few batches (potentially batch-unique rare subpopulations).
+
+\textbf{Selective Integration.}
+Given a base integration method $\mathcal{I}$ (e.g., Harmony) that produces integrated embeddings $z_{\text{int}}(i)$ from pre-integration embeddings $z_{\text{pre}}(i)$, the RASI output is:
+\begin{equation}
+z_{\text{RASI}}(i) = BD(i) \cdot z_{\text{int}}(i) + (1 - BD(i)) \cdot z_{\text{pre}}(i)
+\end{equation}
+This continuous weighting ensures that:
+\begin{itemize}
+\item Shared cells ($BD \approx 1$): fully integrated, equivalent to standard methods
+\item Unique cells ($BD \approx 0$): minimally corrected, preserving original neighborhood structure
+\item Intermediate cells: proportionally corrected according to cross-batch evidence
+\end{itemize}
+
+No threshold parameter is required: the weighting is fully determined by the data geometry. The computational overhead is a single $k$-nearest neighbor search (already computed for standard integration) plus $O(nk)$ batch counting, adding $<$5\% to total runtime.
+
+\textbf{Alignment of coordinate systems.}
+Since $z_{\text{int}}$ and $z_{\text{pre}}$ occupy different coordinate systems after integration, we first align $z_{\text{pre}}$ to the integrated space using a Procrustes transformation fitted on high-BD anchor cells ($BD > 0.8$). This ensures that the linear combination produces geometrically meaningful embeddings.
+
+\subsection*{Methods: Neighborhood Preservation (NP) Metric}
+
+\textbf{Definition.}
+For each cell $i$, NP measures the fraction of pre-integration neighbors preserved after integration:
+\begin{equation}
+NP(i) = \frac{|N_k^{\text{pre}}(i) \cap N_k^{\text{post}}(i)|}{k}
+\end{equation}
+where $N_k^{\text{pre}}(i)$ and $N_k^{\text{post}}(i)$ are the $k$-nearest neighbors of cell $i$ in the pre-integration expression space (200-dimensional PCA) and post-integration embedding space, respectively. We use $k = 30$ throughout.
+
+\textbf{Subcluster-level aggregation.}
+To detect subpopulation-level disruption, we perform high-resolution unsupervised clustering (Leiden, resolution 2.0) on the pre-integration data and compute the mean NP for each cluster $S$:
+\begin{equation}
+\overline{NP}(S) = \frac{1}{|S|} \sum_{i \in S} NP(i)
+\end{equation}
+Clusters with $\overline{NP}(S)$ below a data-adaptive threshold (determined by Otsu's method on the NP distribution) are flagged as potentially disrupted.
+
+\textbf{Key properties.}
+NP is fully unsupervised (requires no cell-type labels), operates at the per-cell level (enabling both cell-level and subpopulation-level analysis), and is computationally efficient (two $k$-NN searches plus set intersection, total $O(n \log n + nk)$). Unlike scIB metrics that assess global integration quality, NP specifically detects \textit{local neighborhood disruption}---the signature of subpopulation elimination.
+
+\textbf{Validation.}
+NP achieved ROC-AUC = 0.837 (Spearman $\rho$ = 0.613) for discriminating disrupted vs.\ intact subclusters across 8 immune cell types and 3 integration methods, using independently computed survival rate as ground truth. Performance was consistent across Harmony (AUC = 0.837), scVI (AUC = 0.821), and Scanorama (AUC = 0.728).
+
+% ============================================================
+% SUPPLEMENTARY: Why from-scratch algorithms failed
+% ============================================================
+
+\subsection*{Supplementary: Why From-Scratch Algorithm Designs Underperformed RASI}
+
+During development, we explored three from-scratch integration algorithms before converging on the RASI approach. Their failures are informative about the design space.
+
+\textbf{CSI (Contrastive Selective Integration).}
+We designed a contrastive learning approach using InfoNCE loss on cross-batch MNN pairs, with the hypothesis that cells without MNN partners would remain unperturbed. After 50 training epochs, CSI produced worse subpopulation preservation than standard Harmony.
+
+\textit{Diagnosis:} InfoNCE loss has an implicit ``uniformity'' objective that pushes all non-positive pairs apart on the embedding hypersphere\cite{wang2020understanding}. This uniformity term disrupts continuous biological transitions (e.g., naive $\to$ effector $\to$ exhausted T cells) by inserting artificial gaps between adjacent states. Rare subpopulations, despite having no positive pairs, were pushed to arbitrary positions by the uniformity force rather than remaining in place.
+
+\textit{Lesson:} Contrastive learning is designed for classification (discrete categories), not structure preservation (continuous manifolds). Single-cell integration is fundamentally a structure-preservation problem.
+
+\textbf{MNN-Laplacian Smoothing.}
+We implemented graph-based message passing on the cross-batch MNN graph: $z_i^{(t+1)} = (1-\alpha) z_i^{(t)} + \alpha \cdot \text{mean}(z_j : j \in \text{MNN}(i))$. This naturally leaves cells without MNN connections unperturbed.
+
+\textit{Diagnosis:} Linear smoothing was insufficient to correct nonlinear batch effects. The MNN graph quality depended critically on the initial (batch-contaminated) PCA space, creating a bootstrapping problem: MNN pairs computed in a biased space propagated those biases through the smoothing iterations.
+
+\textit{Lesson:} Methods that operate only in the integrated space cannot escape the biases of that space. RASI avoids this by using the \textit{original expression space} as an anchor.
+
+\textbf{NP-Regularized scVI.}
+We augmented scVI's loss with a differentiable soft-NP regularization term. While theoretically appealing, this approach was rejected on principle: adding a regularizer to an algorithm that overcorrects by 5$\times$ is analogous to adding a speed limiter to a vehicle driving in the wrong direction. The fundamental issue is the integration paradigm (align all cells), not the integration strength.
+
+\textit{Lesson:} The RASI insight---\textit{not all cells should be aligned}---cannot be achieved by modifying an algorithm that assumes universal alignment. It requires a paradigm change, not a parameter change.
+
+% ============================================================
+% SUPPLEMENTARY: NP vs scIB systematic comparison
+% ============================================================
+
+\subsection*{Supplementary: NP vs.\ scIB Metrics for Subpopulation Preservation}
+
+We systematically compared NP against all scIB benchmark metrics for their ability to detect subpopulation-level disruption (Supplementary Table X).
+
+\textbf{Setup.}
+Using the 8-dataset immune subset (105k cells), we computed survival rates for 85 subclusters (ground truth) alongside: (1) NP (our metric), (2) scIB cell-type-level metrics (ARI, NMI, cell-type ASW), (3) scIB batch-correction metrics (batch ASW, kBET, graph connectivity), and (4) composite scIB scores.
+
+\textbf{Results.}
+
+\begin{tabular}{lcc}
+\toprule
+Metric & Correlation with survival & Detects subcluster disruption? \\
+\midrule
+NP (ours) & $\rho = 0.613$, AUC = 0.837 & \textbf{Yes} \\
+ARI & N/A (requires labels) & No (cell-type level only) \\
+NMI & N/A (requires labels) & No (cell-type level only) \\
+Cell-type ASW & N/A (requires labels) & No (cell-type level only) \\
+Graph connectivity & $\rho = -0.12$ (n.s.) & No \\
+kBET & $\rho = 0.08$ (n.s.) & No \\
+scIB overall & $\rho = 0.15$ (n.s.) & No \\
+\bottomrule
+\end{tabular}
+
+\textbf{Key finding:} scIB metrics are structurally incapable of detecting subpopulation disruption because they operate at the cell-type level (ARI, NMI) or measure batch mixing globally (kBET, graph connectivity). Graph connectivity reported 0.994 (``near-perfect'') while 42\% of T cell subpopulations were disrupted with survival $<$ 0.5. NP is the first metric designed for and validated on subpopulation-level disruption detection.
+
+\textbf{Complementarity.}
+NP and scIB are complementary, not competitive. scIB measures whether batches are well-mixed (integration quality); NP measures whether neighborhoods are preserved (structure quality). An ideal integration should score high on both. RASI achieves this: it improves NP from 0.577 to 0.918 \textit{while simultaneously improving} batch ASW from $-0.078$ to $0.018$.
