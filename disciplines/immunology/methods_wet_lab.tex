@@ -1,0 +1,25 @@
+% Methods: Wet laboratory validation of TIGIT+ Treg immunosuppressive function
+% For inclusion in the main manuscript Methods section
+
+\subsection*{TIGIT\textsuperscript{+} Treg isolation and co-culture suppression assays}
+
+\subsubsection*{PBMC isolation and cell sorting}
+Peripheral blood mononuclear cells (PBMCs) were isolated from healthy donors by density gradient centrifugation using Ficoll-Paque PLUS (GE Healthcare). PBMCs were stained with the following fluorochrome-conjugated antibodies: anti-CD4-APC (clone RPA-T4, BioLegend), anti-CD25-PE/Cy7 (clone BC96, BioLegend), anti-CD127-BV421 (clone A019D5, BioLegend), anti-TIGIT-PE (clone A15153G, BioLegend), and anti-CCR8-BV711 (clone L263G8, BioLegend). TIGIT\textsuperscript{+}CCR8\textsuperscript{$-$} regulatory T cells (Tregs) were sorted as CD4\textsuperscript{+}CD25\textsuperscript{+}CD127\textsuperscript{$-$/lo}TIGIT\textsuperscript{+}CCR8\textsuperscript{$-$} using a BD FACSAria II cell sorter (BD Biosciences). CD8\textsuperscript{+} effector T cells were isolated by negative selection using the EasySep Human CD8\textsuperscript{+} T Cell Isolation Kit (STEMCELL Technologies).
+
+\subsubsection*{Co-culture assays}
+Sorted TIGIT\textsuperscript{+} Tregs were co-cultured with autologous CD8\textsuperscript{+} effector T cells at a 1:4 Treg-to-effector ratio in RPMI-1640 complete medium supplemented with 10\% FBS, 100~U/mL penicillin-streptomycin, and 100~IU/mL recombinant human IL-2 (PeproTech). T cell activation was stimulated using anti-CD3/CD28 Dynabeads (Thermo Fisher Scientific). Co-cultures were maintained for 72 hours at 37\textdegree C in 5\% CO\textsubscript{2}. Negative control (NC) wells contained CD8\textsuperscript{+} T cells with Dynabeads but without Tregs.
+
+\subsubsection*{T cell activation assay}
+After 72 hours of co-culture, cells were stained with anti-CD69-FITC (clone FN50, BioLegend) and analyzed on a CytoFLEX flow cytometer (Beckman Coulter). The percentage of CD69\textsuperscript{+} cells among CD8\textsuperscript{+} T cells was quantified as a measure of T cell activation.
+
+\subsubsection*{IFN-$\gamma$ ELISA}
+Culture supernatants were collected after 72 hours of co-culture and IFN-$\gamma$ concentrations were measured using the Human IFN-$\gamma$ Quantikine ELISA Kit (R\&D Systems, catalog no.\ DIF50C) according to the manufacturer's instructions.
+
+\subsubsection*{Cytotoxicity assay}
+After 72 hours of co-culture, CD8\textsuperscript{+} T cells were harvested and co-incubated with A549 human non-small cell lung cancer cells at an effector-to-target ratio of 10:1 for 24 hours. Tumor cell killing was quantified using the CytoTox 96 Non-Radioactive Cytotoxicity Assay (Promega, catalog no.\ G1780), which measures lactate dehydrogenase (LDH) release. The killing rate was calculated as:
+\begin{equation}
+\text{Killing rate (\%)} = \frac{\text{Experimental} - \text{Effector spontaneous} - \text{Target spontaneous}}{\text{Target maximum} - \text{Target spontaneous}} \times 100
+\end{equation}
+
+\subsubsection*{Statistical analysis of wet laboratory experiments}
+All statistical comparisons between two groups were performed using two-tailed unpaired Student's \textit{t}-test. Multiple testing correction was applied using the Benjamini--Hochberg method where applicable. Data are presented as mean $\pm$ s.d.\ from at least three independent experiments. Significance thresholds: $*P < 0.05$, $**P < 0.01$, $***P < 0.001$. Data visualization was performed using R (v4.3.1) with ggplot2 (v3.4.4) and GraphPad Prism (v9.5).
