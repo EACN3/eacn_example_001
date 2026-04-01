@@ -1,0 +1,124 @@
+% ============================================================
+% Nature Article LaTeX Template — Correct Structure
+% Based on: https://www.nature.com/nature/for-authors/formatting-guide
+% ============================================================
+
+\documentclass[10pt]{article}
+
+% --- Required packages ---
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,hyperref,xcolor}
+\usepackage[numbers,super]{natbib}  % Nature uses superscript numbered refs
+\usepackage{setspace}
+\doublespacing                       % REQUIRED: Nature demands double-spacing
+\usepackage{lineno}
+\linenumbers                         % REQUIRED: line numbers for review
+
+% ============================================================
+\title{\textbf{The majority bias: standard single-cell workflows systematically eliminate rare subpopulations during batch integration}}
+
+\author{[Author list]}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT — Nature limit: 150 words MAX, single paragraph, no subheadings
+% ============================================================
+\begin{abstract}
+% [MUST BE ≤150 WORDS — current draft is ~200+, needs compression]
+Single-cell batch integration harbors a systematic ``majority bias''---implicit assumptions across nine pipeline steps that collectively suppress rare subpopulation signals to $\sim$0.06\% retention. We show that HVG selection excludes 60--100\% of rare-type markers, PCA compresses rare signals by $>$99\%, and Harmony overcorrects by $\sim$5.6-fold. We introduce RASI, improving neighborhood preservation from 0.577 to 0.918 (immune atlas, 2.26M cells) and 0.377 to 0.903 (pancreas), while improving batch mixing. Subpopulation destruction is scale-dependent: pDC are safe at 5 batches but severely disrupted at 103. Wet-lab validation confirms a TIGIT$^+$CCR8$^-$ Treg community disrupted by integration exhibits potent immunosuppression (CD69 4.1$\times$$\downarrow$, IFN-$\gamma$ 2.7$\times$$\downarrow$, killing 3.3$\times$$\downarrow$). Protecting rare subpopulations requires rethinking the entire workflow, not just the integration algorithm.
+% [~120 words — within limit]
+\end{abstract}
+
+% ============================================================
+% INTRODUCTION — Nature: NO section heading, just start writing
+% ============================================================
+% [Do NOT use \section{Introduction} — Nature starts directly]
+
+Single-cell RNA sequencing has transformed...
+
+% ============================================================
+% RESULTS — with subheadings
+% ============================================================
+\section{Results}
+
+\subsection{The majority bias: a cascade of implicit assumptions}
+...
+
+\subsection{RASI: Rare-Aware Single-cell Integration}
+...
+
+\subsection{RASI validation across multiple datasets}
+...
+
+\subsection{Scale-dependent vulnerability of rare subpopulations}
+...
+
+\subsection{Biological validation: TIGIT$^+$CCR8$^-$ Treg functional community}
+...
+
+% ============================================================
+% DISCUSSION
+% ============================================================
+\section{Discussion}
+...
+
+% ============================================================
+% REFERENCES — Nature: BEFORE Methods
+% ============================================================
+\bibliographystyle{naturemag}
+\bibliography{references}
+
+% ============================================================
+% METHODS — Nature: AFTER References (this is unique to Nature!)
+% ============================================================
+\section{Methods}
+
+\subsection{Data}
+...
+
+\subsection{RASI pipeline}
+...
+
+\subsection{Wet-lab validation}
+...
+
+\subsection{Statistical analysis}
+...
+
+\subsection{Computational efficiency}
+...
+
+% ============================================================
+% FIGURE LEGENDS — After Methods
+% ============================================================
+\section*{Figure Legends}
+% [Insert figure legends here — see figure_legends_draft.tex]
+
+% ============================================================
+% REQUIRED SECTIONS (Nature mandates all of these)
+% ============================================================
+\section*{Acknowledgements}
+...
+
+\section*{Author contributions}
+% Example: X.Y. conceived the study. A.B. performed computational analyses.
+% C.D. performed wet-lab experiments. All authors reviewed the manuscript.
+
+\section*{Competing interests}
+The authors declare no competing interests.
+
+\section*{Data availability}
+Pan-cancer atlas: Zenodo DOI:10.5281/zenodo.10651059.
+
+\section*{Code availability}
+RASI source code: [GitHub URL].
+
+% ============================================================
+% EXTENDED DATA (up to 10 items, peer-reviewed)
+% ============================================================
+% Extended Data Figures/Tables go here
+
+\end{document}
