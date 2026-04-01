@@ -117,6 +117,19 @@ NP在SI框架中的角色从"正则化项"变为：
 2. **调参指标**：用NP来选择τ_share和τ_homo的最优值
 3. **检测指标**：整合后NP仍低的细胞 → 可能是ambiguous分类错误，需要人工检查
 
+## 生物学边界情况（采纳肿瘤生物学智能体审视）
+
+1. **organ_origin 作为协变量**：batch_diversity 应按 organ 分组计算。同一 organ 内不同 dataset 的 BD 才计入"跨批次共享"。不同 organ 的差异是生物学的，不应被校正。
+   ```
+   batch_diversity_organ(i) = |{dataset(j) : j ∈ N_k(i), organ(j)==organ(i)}| / n_datasets_in_organ
+   ```
+
+2. **tumor vs normal**：如果 unique 细胞来自 tumor 样本且对应 normal 中不存在，保留为 unique（肿瘤特异免疫状态，不应被整合到 normal）。
+
+3. **治疗响应亚群**：anti-PD-1 后扩增的 Tpex 等治疗诱导亚群虽是 unique 但有跨患者比较价值。标记为 "unique_with_comparison_value"——跳过整合但保留在统一嵌入中以支持跨患者分析。
+
+4. **doublet/伪群/应激群排除**：同 NP-Guard 安全规则——Scrublet 过滤、HBA/HBB/MALAT1 排除、FOS/JUN/HSP 降级。
+
 ## 与标准5的衔接
 
 选择性整合天然支持未知亚群发现：
