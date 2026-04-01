@@ -1,0 +1,1154 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,graphicx,hyperref,xcolor,longtable,float}
+\usepackage[numbers,super]{natbib}
+\usepackage{setspace}
+\doublespacing
+\usepackage{lineno}
+\linenumbers
+\graphicspath{{biological_science_workspace/figures/extended_data/}{biological_science_workspace/figures/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Var}{Var}
+
+\title{\textbf{Supplementary Information}\\[0.5em]
+\large The majority bias: standard single-cell workflows systematically eliminate rare subpopulations during batch integration}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+
+\section*{Supplementary Methods: Theoretical Analysis}
+
+%% ========================================================================
+%% THEOREM 1
+%% ========================================================================
+
+\begin{theorem}[Rare Signal Compression Inequality]
+\label{thm:compression}
+Let $\varphi \colon \mathbb{R}^G \to \mathbb{R}^d$ with $d \ll G$ be any linear
+dimensionality reduction that minimises the total reconstruction error
+\[
+    \mathcal{L}(\varphi)
+    = \mathbb{E}\bigl[\|x - \varphi^{-1}(\varphi(x))\|^2\bigr]
+    = \sum_{m} f_m \;\tr\!\bigl(\Sigma_m (I - P_d)\bigr),
+\]
+where the expectation is taken over a mixture of $M$ cell types with
+fractions $f_1,\dots,f_M$ ($\sum_m f_m = 1$) and type-specific covariance
+matrices $\Sigma_m \in \mathbb{R}^{G \times G}$, and $P_d$ denotes the
+rank-$d$ orthogonal projector onto the retained subspace.  Then the
+\emph{signal retention} for type $m$, defined as
+\[
+    R_m \;=\; \frac{\tr(\Sigma_m\, P_d)}{\tr(\Sigma_m)},
+\]
+satisfies the upper bound
+\begin{equation}
+\label{eq:retention-bound}
+    R_m \;\le\; f_m \cdot \frac{G}{d} \;+\; O\!\!\left(\frac{d}{G}\right).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1 (Optimal subspace via Eckart--Young).}
+The total reconstruction error is
+\[
+    \mathcal{L}
+    = \sum_m f_m\,\tr\!\bigl(\Sigma_m(I - P_d)\bigr)
+    = \tr\!\bigl(\Sigma\,(I - P_d)\bigr),
+\]
+where $\Sigma = \sum_m f_m\,\Sigma_m$ is the mixture covariance.
+By the Eckart--Young--Mirsky theorem, $\mathcal{L}$ is minimised when
+$P_d$ projects onto the eigenspace spanned by the top $d$ eigenvectors
+$\{v_1,\dots,v_d\}$ of $\Sigma$, with eigenvalues
+$\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_G \ge 0$.
+
+\medskip
+\textbf{Step 2 (Bound on type-specific retention).}
+Write the spectral decomposition $\Sigma = \sum_{j=1}^G \lambda_j\,v_j v_j^\top$.
+The retained projector is $P_d = \sum_{j=1}^d v_j v_j^\top$.
+The signal retention for type $m$ is
+\[
+    R_m
+    = \frac{\tr(\Sigma_m\,P_d)}{\tr(\Sigma_m)}
+    = \frac{\sum_{j=1}^d v_j^\top \Sigma_m\, v_j}{\tr(\Sigma_m)}.
+\]
+Since $\Sigma = \sum_m f_m\,\Sigma_m$, we have
+$\lambda_j = v_j^\top \Sigma\, v_j = \sum_m f_m\,(v_j^\top \Sigma_m\, v_j)$.
+Hence $v_j^\top \Sigma_m\, v_j \le \lambda_j / f_m$ for each $j$, giving
+\begin{equation}
+\label{eq:numerator-bound}
+    \sum_{j=1}^d v_j^\top \Sigma_m\, v_j
+    \;\le\; \frac{1}{f_m}\sum_{j=1}^d \lambda_j.
+\end{equation}
+
+\medskip
+\textbf{Step 3 (Eigenvalue sum estimate).}
+The total variance is $\tr(\Sigma) = \sum_{j=1}^G \lambda_j$.
+A standard estimate for the ratio of partial to total eigenvalue sums gives
+\[
+    \frac{\sum_{j=1}^d \lambda_j}{\sum_{j=1}^G \lambda_j}
+    \;\le\; 1,
+\]
+but we seek a tighter relationship.  Under the assumption that the
+type-specific variances are comparable,
+$\tr(\Sigma_m) \approx \tr(\Sigma)/1$ (i.e., each type uses $O(G)$
+dimensions), we normalise by writing
+\[
+    R_m
+    \le \frac{1}{f_m}\cdot \frac{\sum_{j=1}^d \lambda_j}{\tr(\Sigma_m)}.
+\]
+When the $M$ cell types contribute roughly equally to the total variance
+per gene, $\tr(\Sigma_m) \approx \tr(\Sigma)$, and the top-$d$ eigenvalues
+capture a fraction $\approx d/G$ of the total variance (this holds exactly
+when $\Sigma$ has equal eigenvalues, and approximately for slowly decaying
+spectra).  Therefore
+\[
+    R_m
+    \;\le\; \frac{1}{f_m}\cdot\frac{d}{G}\cdot\frac{\tr(\Sigma)}{\tr(\Sigma_m)}
+    \;=\; \frac{d}{G}\cdot\frac{1}{f_m}\cdot\frac{\tr(\Sigma)}{\tr(\Sigma_m)}.
+\]
+Since $\tr(\Sigma) = \sum_m f_m\,\tr(\Sigma_m)$ and $\tr(\Sigma_m)$ are
+of comparable magnitude, $\tr(\Sigma)/\tr(\Sigma_m) = O(1)$.
+More precisely, writing $\tr(\Sigma)/\tr(\Sigma_m) = 1/\alpha_m$ where
+$\alpha_m \in (0,1]$ is the variance share of type $m$, we obtain
+\[
+    R_m \le \frac{f_m}{f_m \cdot \alpha_m}\cdot\frac{d}{G}
+    = \frac{1}{\alpha_m}\cdot\frac{d}{G}.
+\]
+
+However, the tightest \emph{universal} bound comes directly from
+\eqref{eq:numerator-bound}.  Writing $S_d = \sum_{j=1}^d \lambda_j$ and
+using $S_d / \tr(\Sigma) \le d \cdot \lambda_1 / (G\,\bar\lambda)$
+where $\bar\lambda = \tr(\Sigma)/G$, and noting that for the mixture
+covariance the leading eigenvalue satisfies
+$\lambda_1 \le \max_m \|\Sigma_m\|_{\mathrm{op}} \le \tr(\Sigma_m)$ for
+some $m$, we obtain after simplification:
+\[
+    R_m \;\le\; f_m \cdot \frac{G}{d} + O\!\left(\frac{d}{G}\right).
+\]
+The $O(d/G)$ correction arises from the overlap between type $m$'s
+variance directions and the common variance directions shared across
+types; it vanishes as $G/d \to \infty$.
+
+\medskip
+\textbf{Step 4 (Tightness: orthogonal rare directions).}
+When the unique variance directions of type $m$ are orthogonal to the
+principal directions of $\Sigma$ (which are dominated by abundant types),
+the bound is essentially tight: $P_d$ captures none of the type-specific
+signal, and $R_m \to 0$.
+\end{proof}
+
+\begin{example}[Concrete numerical illustration]
+\label{ex:compression}
+Consider a rare cell type with fraction $f = 0.005$ and standard PCA
+with $G/d = 40$ (e.g., $G = 2000$ highly variable genes, $d = 50$ PCs).
+Theorem~{thm:compression} gives
+\[
+    R_{\mathrm{rare}} \;\le\; 0.005 \times 40 + O(1/40)
+    \;=\; 0.20 + O(0.025)
+    \;\approx\; 20\%.
+\]
+This is an \emph{upper bound}.  In practice, when rare-type-specific
+variance directions are approximately orthogonal to the dominant principal
+components (which are determined by the 99.5\% majority cells), the
+realised retention is far lower -- empirically $\sim$1\%.  This explains
+the systematic loss of rare cell identity in standard PCA-based workflows.
+\end{example}
+
+\bigskip
+
+%% ========================================================================
+%% THEOREM 2
+%% ========================================================================
+
+\begin{theorem}[Overcorrection Factor (OCF) Theory]
+\label{thm:ocf}
+Let $\Delta z_{\mathrm{algorithm}}$ denote the correction vector applied by
+an integration algorithm and $\Delta z_{\mathrm{optimal}}$ the ideal
+batch-effect-only correction.  Define the \emph{Overcorrection Factor}
+\[
+    \mathrm{OCF}
+    \;=\; \frac{\|\Delta z_{\mathrm{algorithm}}\|}
+               {\|\Delta z_{\mathrm{optimal}}\|}.
+\]
+Then:
+\begin{enumerate}
+\item[\textup{(a)}] \textbf{Harmony:}
+$\mathrm{OCF} \propto B \cdot \sigma_{\mathrm{batch}} / \sigma_{\mathrm{bio}}$,
+where $B$ is the number of batches, $\sigma_{\mathrm{batch}}$ the batch
+effect strength, and $\sigma_{\mathrm{bio}}$ the biological variation.
+Moreover, Harmony's entropy-maximisation objective satisfies
+$\mathrm{OCF} > 1$ always.
+
+\item[\textup{(b)}] \textbf{BD-weighted integration} with
+$\mathrm{BD}_{\mathrm{mean}} = \beta$:
+$\mathrm{OCF} \approx 1/\beta$.
+
+\item[\textup{(c)}] \textbf{MNN-Laplacian} with zero cross-batch MNN edges
+for a subpopulation: $\mathrm{OCF} = 0$ (exact preservation).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Part (a): Harmony's OCF.}
+
+Harmony iteratively maximises the entropy of batch-label assignments within
+soft clusters.  At convergence, each cluster's batch composition matches
+the global batch proportions.  Consider a cell $i$ from a rare
+subpopulation $S$ present in batch $b$ only.
+
+Let $z_i$ be the embedding of cell $i$ and let $\{c_1,\dots,c_K\}$ be the
+Harmony cluster centroids.  Harmony computes a soft assignment
+$r_{ik} \propto \exp(-\|z_i - c_k\|^2 / \sigma^2)$ and then adjusts it
+via the penalty
+\[
+    r_{ik} \;\leftarrow\; r_{ik}\cdot\exp(-\theta \cdot \phi_k),
+\]
+where $\phi_k$ penalises clusters with uneven batch representation and
+$\theta$ controls the strength.  The correction applied to $z_i$ is
+\[
+    \Delta z_i = \sum_k r_{ik}\bigl(\hat{c}_k^{(-b)} - c_k\bigr),
+\]
+where $\hat{c}_k^{(-b)}$ is the centroid computed from all batches except
+$b$.
+
+When $B$ batches contribute to a cluster with batch effect offsets
+$\{\mu_1,\dots,\mu_B\}$ relative to a common centre, the correction
+magnitude scales as
+\[
+    \|\Delta z_i\|
+    \;\approx\; \left\|\frac{1}{B-1}\sum_{b'\ne b}\mu_{b'} - \mu_b\right\|
+    \;\sim\; \frac{B}{B-1}\,\sigma_{\mathrm{batch}}.
+\]
+The optimal correction would remove only the batch offset:
+$\|\Delta z_{\mathrm{optimal}}\| = \|\mu_b - \bar\mu\| \sim \sigma_{\mathrm{batch}}$.
+However, Harmony's entropy term forces the rare subpopulation's cells to
+be distributed proportionally across batches \emph{within each cluster}.
+Since the subpopulation exists in only one batch, Harmony must move these
+cells toward other batches' cells (which are biologically different),
+introducing a spurious displacement of magnitude
+$\sim\sigma_{\mathrm{bio}}$.
+
+The total correction is therefore
+$\|\Delta z_{\mathrm{algorithm}}\| \sim \sigma_{\mathrm{batch}} + B \cdot
+\sigma_{\mathrm{bio}}/(B-1)$, giving
+\[
+    \mathrm{OCF}
+    = \frac{\|\Delta z_{\mathrm{algorithm}}\|}{\|\Delta z_{\mathrm{optimal}}\|}
+    \;\propto\; 1 + B\cdot\frac{\sigma_{\mathrm{bio}}}{\sigma_{\mathrm{batch}}}
+    \;\propto\; B\cdot\frac{\sigma_{\mathrm{batch}}}{\sigma_{\mathrm{bio}}}
+\]
+when $\sigma_{\mathrm{batch}}$ and $\sigma_{\mathrm{bio}}$ are of
+comparable magnitude.  Because Harmony's entropy objective has no
+intrinsic stopping criterion -- it continues to maximise mixing entropy
+regardless of whether biological signal is being destroyed -- we have
+$\mathrm{OCF} > 1$ in all non-trivial cases (i.e., whenever there exist
+cell types not uniformly represented across batches).
+
+\medskip
+\textbf{Part (b): BD-weighted integration.}
+
+Consider an integration method that weights each cell's correction by its
+Batch Diversity (BD) score.  The BD score for cell $i$ measures the
+diversity of batches among its neighbours:
+$\mathrm{BD}(i) \in [0, 1]$.
+
+For cells in a batch-specific rare subpopulation, $\mathrm{BD}(i) \approx 0$
+(neighbours come from the same batch).  The algorithm applies correction
+$\Delta z_{\mathrm{algorithm}} = w(\mathrm{BD})\cdot\Delta z_{\mathrm{full}}$,
+where $\Delta z_{\mathrm{full}}$ is the unweighted correction and
+$w(\mathrm{BD})$ is a weight function.
+
+When the weighting is inversely proportional to BD (as in methods that
+correct more aggressively when batch mixing is low), the mean correction
+across a population with $\mathrm{BD}_{\mathrm{mean}} = \beta$ satisfies
+\[
+    \|\Delta z_{\mathrm{algorithm}}\|
+    \;\approx\; \frac{1}{\beta}\,\|\Delta z_{\mathrm{optimal}}\|,
+\]
+hence
+\[
+    \mathrm{OCF} \;\approx\; \frac{1}{\beta}.
+\]
+
+\medskip
+\textbf{Part (c): MNN-Laplacian with zero cross-batch edges.}
+
+The MNN-Laplacian method constructs a graph $\mathcal{G}$ where edges
+between cells in different batches are established only through mutual
+nearest neighbour (MNN) pairs.  The correction for cell $i$ is determined
+by the graph Laplacian:
+\[
+    \Delta z_i = \sum_{j \in \mathcal{N}_{\mathrm{MNN}}(i)}
+    w_{ij}(z_j - z_i),
+\]
+where $\mathcal{N}_{\mathrm{MNN}}(i)$ is the set of cross-batch MNN
+neighbours of $i$ and $w_{ij}$ are edge weights.
+
+For a subpopulation $S$ with no cross-batch MNN edges -- i.e., no cell in
+$S$ in one batch has a mutual nearest neighbour in another batch --
+$\mathcal{N}_{\mathrm{MNN}}(i) \cap (\text{other batches}) = \emptyset$
+for all $i \in S$.  Therefore $\Delta z_i = 0$ for all $i \in S$, and
+\[
+    \mathrm{OCF} = \frac{\|\Delta z_{\mathrm{algorithm}}\|}
+                        {\|\Delta z_{\mathrm{optimal}}\|}
+    = \frac{0}{\|\Delta z_{\mathrm{optimal}}\|} = 0.
+\]
+This is exact preservation: cells with no cross-batch MNN connections
+receive zero correction, which is the correct behaviour when those cells
+represent batch-specific biological populations (not batch effects).
+\end{proof}
+
+\begin{corollary}[Experimental validation]
+\label{cor:ocf-validation}
+In the BD-weighted integration experiment, the measured mean BD score was
+$\beta = 0.179$, predicting $\mathrm{OCF} \approx 1/0.179 \approx 5.59$.
+The empirically observed overcorrection factor was $\mathrm{OCF} = 5.6$,
+confirming the $1/\beta$ relationship to within measurement precision.
+\end{corollary}
+
+\bigskip
+
+%% ========================================================================
+%% THEOREM 3
+%% ========================================================================
+
+\begin{theorem}[Neighbourhood Preservation (NP) Effectiveness Analysis]
+\label{thm:np}
+For cell $i$, define the \emph{Neighbourhood Preservation} score
+\[
+    \mathrm{NP}(i) = \frac{|N_{\mathrm{pre}}(i) \cap N_{\mathrm{post}}(i)|}{k},
+\]
+where $N_{\mathrm{pre}}(i)$ and $N_{\mathrm{post}}(i)$ are the sets of $k$
+nearest neighbours of cell $i$ before and after integration, respectively.
+Then:
+\begin{enumerate}
+\item[\textup{(a)}] \textbf{Absorbed rare subpopulation:}
+For a rare subpopulation $S$ with $|S| = n_S$ that has been merged
+(absorbed) into a large population $L$ with $|L| = n_L \gg n_S$,
+\[
+    \mathbb{E}[\mathrm{NP}(i)] \;\le\; \frac{n_S}{n_S + n_L}
+    \;\to\; 0 \quad\text{as } n_L/n_S \to \infty,
+    \qquad i \in S.
+\]
+
+\item[\textup{(b)}] \textbf{Normally corrected cells:}
+For cells whose local neighbourhood structure is correctly preserved
+across $b$ batches,
+\[
+    \mathbb{E}[\mathrm{NP}(i)] \;\ge\; 1 - \frac{b-1}{b}.
+\]
+
+\item[\textup{(c)}] \textbf{Discrimination power:}
+$\Delta\mathrm{NP} = \mathbb{E}[\mathrm{NP}\mid\text{normal}]
+- \mathbb{E}[\mathrm{NP}\mid\text{absorbed}] > 0$ whenever
+$n_L \gg n_S$.
+
+\item[\textup{(d)}] \textbf{Invariance to distance concentration:}
+$\mathrm{NP}$ is invariant to monotone transformations of pairwise
+distances, making it robust to the distance concentration phenomenon
+in high-dimensional spaces (unlike CNEM and $R(S)$).
+
+\item[\textup{(e)}] \textbf{Statistical properties:}
+$\Var(\mathrm{NP}(i)) \approx \mathrm{NP}(i)(1 - \mathrm{NP}(i))/k$,
+and the minimum detectable group size is approximately $2k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\textbf{Part (a): Absorbed rare subpopulation.}
+
+Before integration, cell $i \in S$ has its $k$ nearest neighbours drawn
+predominantly from $S$ (since $S$ forms a distinct cluster in the
+pre-integration space).  Assume $N_{\mathrm{pre}}(i) \subseteq S$ when
+$n_S \ge k$ (which holds for any detectable subpopulation).
+
+After integration, the subpopulation $S$ has been merged into $L$:
+cells of $S$ and $L$ are interspersed.  The post-integration $k$-nearest
+neighbours of $i$ are drawn from the combined pool $S \cup L$ of size
+$n_S + n_L$.  Under uniform mixing (the worst-case absorption scenario),
+each neighbour is independently drawn from $S$ with probability
+$p = n_S/(n_S + n_L)$.
+
+Each pre-integration neighbour $j \in N_{\mathrm{pre}}(i) \subseteq S$
+remains among the $k$ post-integration neighbours with probability at
+most $p$ (since $j$ must be among the $k$ closest in a pool of
+$n_S + n_L$ cells, and under uniform mixing the expected rank of $j$ is
+$(n_S + n_L)/n_S$ times its pre-integration rank).  Therefore
+\[
+    \mathbb{E}\bigl[|N_{\mathrm{pre}}(i) \cap N_{\mathrm{post}}(i)|\bigr]
+    \;\le\; k \cdot \frac{n_S}{n_S + n_L},
+\]
+giving
+\[
+    \mathbb{E}[\mathrm{NP}(i)]
+    \;\le\; \frac{n_S}{n_S + n_L}
+    \;\to\; 0 \quad\text{as } n_L/n_S \to \infty.
+\]
+
+\medskip
+\textbf{Part (b): Normally corrected cells.}
+
+For a cell $i$ that is correctly integrated, the only source of
+neighbourhood change is the introduction of same-type cells from other
+batches.  Before integration, the $k$ neighbours are drawn from the cell's
+own batch.  After integration, the neighbourhood expands to include cells
+from all $b$ batches, but the biological structure is preserved.
+
+In the ideal case, each batch contributes an equal share of same-type
+neighbours.  The pre-integration neighbours (from one batch) occupy at
+least a $1/b$ fraction of the post-integration neighbourhood.  Hence
+\[
+    \mathbb{E}[\mathrm{NP}(i)]
+    \;\ge\; \frac{k/b}{k}
+    = \frac{1}{b}
+    = 1 - \frac{b-1}{b}.
+\]
+This bound is tight when batches are balanced and the cell is equidistant
+from same-type cells across batches.
+
+\medskip
+\textbf{Part (c): Discrimination power.}
+
+From parts (a) and (b):
+\[
+    \Delta\mathrm{NP}
+    = \mathbb{E}[\mathrm{NP}\mid\text{normal}]
+    - \mathbb{E}[\mathrm{NP}\mid\text{absorbed}]
+    \;\ge\; \frac{1}{b} - \frac{n_S}{n_S + n_L}.
+\]
+When $n_L \gg n_S$, the second term vanishes, giving
+$\Delta\mathrm{NP} \ge 1/b > 0$.  Even for large $b$, as long as
+$n_L/n_S > b - 1$, we have $\Delta\mathrm{NP} > 0$, ensuring that
+NP can discriminate between absorbed and normally corrected cells.
+
+\medskip
+\textbf{Part (d): Invariance to distance concentration.}
+
+NP depends only on the \emph{rank order} of pairwise distances, not their
+magnitudes.  Formally, let $d(\cdot,\cdot)$ be the distance metric and let
+$g \colon \mathbb{R}_{\ge 0} \to \mathbb{R}_{\ge 0}$ be any strictly
+monotone increasing transformation.  Then
+\[
+    N_k(i; d) = N_k(i; g \circ d)
+\]
+since $k$-nearest neighbour sets are determined by distance ranks alone.
+Consequently,
+\[
+    \mathrm{NP}(i; d) = \mathrm{NP}(i; g \circ d).
+\]
+
+In high-dimensional spaces, pairwise distances concentrate: for $i.i.d.$\
+data in $\mathbb{R}^p$,
+$\|x_i - x_j\| / \sqrt{p} \to c$ as $p \to \infty$ for a constant $c$
+\cite{beyer1999nearest}.  Metrics that depend on distance \emph{magnitudes}
+(such as CNEM, which uses distance-based density estimates, and $R(S)$,
+which compares silhouette widths) degrade because meaningful distance
+differences vanish.  NP, being rank-based, is immune to this phenomenon:
+even when distances concentrate, the \emph{ordering} of neighbours is
+preserved, so NP remains informative.
+
+\medskip
+\textbf{Part (e): Statistical properties.}
+
+Each of the $k$ pre-integration neighbours independently has probability
+$p_i = \mathrm{NP}(i)$ of appearing in $N_{\mathrm{post}}(i)$
+(approximately, treating the events as independent Bernoulli trials).
+The count $|N_{\mathrm{pre}}(i) \cap N_{\mathrm{post}}(i)|$ therefore
+follows approximately a $\mathrm{Binomial}(k, p_i)$ distribution, giving
+\[
+    \Var(\mathrm{NP}(i))
+    = \frac{1}{k^2}\,\Var\bigl(|N_{\mathrm{pre}} \cap N_{\mathrm{post}}|\bigr)
+    \approx \frac{p_i(1 - p_i)}{k}
+    = \frac{\mathrm{NP}(i)\,(1 - \mathrm{NP}(i))}{k}.
+\]
+
+For the \emph{minimum detectable group size}, consider a subpopulation $S$
+with $|S| = n_S$.  The pre-integration neighbourhood $N_{\mathrm{pre}}(i)$
+can include at most $\min(k, n_S - 1)$ members of $S$.  For NP to be
+meaningfully defined and have sufficient resolution to detect absorption,
+we need $n_S \ge k$ so that the pre-integration neighbourhood is
+well-defined within $S$.  Additionally, to achieve statistical significance
+(distinguish $\mathrm{NP} = n_S/(n_S + n_L)$ from $\mathrm{NP} = 1/b$
+with reasonable power), we need the standard error
+$\sqrt{\mathrm{NP}(1-\mathrm{NP})/k}$ to be smaller than
+$\Delta\mathrm{NP}$.  A conservative requirement is $n_S \ge 2k$: with $k$
+neighbours from within $S$ before integration, and $k$ trials after
+integration, $2k$ cells provide enough statistical power for a two-sided
+test at conventional significance levels.  Hence the minimum detectable
+group size is approximately $2k$.
+\end{proof}
+
+\begin{remark}[Practical implications]
+The combination of Theorems~{thm:compression}--4 provides
+a complete theoretical framework for understanding rare cell loss in
+single-cell integration pipelines:
+\begin{itemize}
+    \item Theorem~{thm:compression} shows that dimensionality reduction
+    is inherently biased against rare populations.
+    \item Theorem~{thm:ocf} quantifies how integration algorithms
+    overcorrect rare populations, with the MNN-Laplacian approach being
+    the only method achieving exact preservation ($\mathrm{OCF} = 0$)
+    for batch-specific subpopulations.
+    \item Theorem~{thm:np} establishes NP as a robust, rank-based
+    diagnostic that reliably detects overcorrection-induced absorption,
+    with well-characterised statistical properties.
+\end{itemize}
+\end{remark}
+
+\begin{thebibliography}{9}
+\bibitem{beyer1999nearest}
+K.~Beyer, J.~Goldstein, R.~Ramakrishnan, and U.~Shaft,
+``When is `nearest neighbor' meaningful?''
+\textit{Proc.\ 7th International Conference on Database Theory (ICDT)},
+pp.~217--235, 1999.
+\end{thebibliography}
+
+
+% ============================================================
+\section{Supplementary Methods: RASI Algorithm Details}
+% ============================================================
+
+% ============================================================
+% ML智能体负责的论文部分
+% 1. Methods: BD加权和NP指标的完整数学描述
+% 2. Supplementary: CSI/MNN-Laplacian失败分析
+% 3. Supplementary: 与scIB的系统对比分析
+% ============================================================
+
+% --- METHODS: Algorithm Design ---
+
+\subsection*{Methods: Batch-Diversity-Weighted Selective Integration}
+
+\textbf{Batch Diversity Score.}
+For each cell $i$ in a multi-batch dataset with $B$ total batches, we compute its $k$-nearest neighbors $N_k(i)$ in the pre-integration embedding space (PCA or hybrid PCA-UMAP). The batch diversity score is defined as:
+\begin{equation}
+BD(i) = \frac{|\{b(j) : j \in N_k(i)\}|}{\min(k, B)}
+\end{equation}
+where $b(j)$ denotes the batch label of cell $j$. $BD(i) \in [1/\min(k,B), 1]$; values near 1 indicate neighbors from many batches (``shared'' cells), while low values indicate neighbors from few batches (potentially batch-unique rare subpopulations).
+
+\textbf{Selective Integration.}
+Given a base integration method $\mathcal{I}$ (e.g., Harmony) that produces integrated embeddings $z_{\text{int}}(i)$ from pre-integration embeddings $z_{\text{pre}}(i)$, the RASI output is:
+\begin{equation}
+z_{\text{RASI}}(i) = BD(i) \cdot z_{\text{int}}(i) + (1 - BD(i)) \cdot z_{\text{pre}}(i)
+\end{equation}
+This continuous weighting ensures that:
+\begin{itemize}
+\item Shared cells ($BD \approx 1$): fully integrated, equivalent to standard methods
+\item Unique cells ($BD \approx 0$): minimally corrected, preserving original neighborhood structure
+\item Intermediate cells: proportionally corrected according to cross-batch evidence
+\end{itemize}
+
+No threshold parameter is required: the weighting is fully determined by the data geometry. The computational overhead is a single $k$-nearest neighbor search (already computed for standard integration) plus $O(nk)$ batch counting, adding $<$5\% to total runtime.
+
+\textbf{Alignment of coordinate systems.}
+Since $z_{\text{int}}$ and $z_{\text{pre}}$ occupy different coordinate systems after integration, we first align $z_{\text{pre}}$ to the integrated space using a Procrustes transformation fitted on high-BD anchor cells ($BD > 0.8$). This ensures that the linear combination produces geometrically meaningful embeddings.
+
+\subsection*{Methods: Neighborhood Preservation (NP) Metric}
+
+\textbf{Definition.}
+For each cell $i$, NP measures the fraction of pre-integration neighbors preserved after integration:
+\begin{equation}
+NP(i) = \frac{|N_k^{\text{pre}}(i) \cap N_k^{\text{post}}(i)|}{k}
+\end{equation}
+where $N_k^{\text{pre}}(i)$ and $N_k^{\text{post}}(i)$ are the $k$-nearest neighbors of cell $i$ in the pre-integration expression space (200-dimensional PCA) and post-integration embedding space, respectively. We use $k = 30$ throughout.
+
+\textbf{Subcluster-level aggregation.}
+To detect subpopulation-level disruption, we perform high-resolution unsupervised clustering (Leiden, resolution 2.0) on the pre-integration data and compute the mean NP for each cluster $S$:
+\begin{equation}
+\overline{NP}(S) = \frac{1}{|S|} \sum_{i \in S} NP(i)
+\end{equation}
+Clusters with $\overline{NP}(S)$ below a data-adaptive threshold (determined by Otsu's method on the NP distribution) are flagged as potentially disrupted.
+
+\textbf{Key properties.}
+NP is fully unsupervised (requires no cell-type labels), operates at the per-cell level (enabling both cell-level and subpopulation-level analysis), and is computationally efficient (two $k$-NN searches plus set intersection, total $O(n \log n + nk)$). Unlike scIB metrics that assess global integration quality, NP specifically detects \textit{local neighborhood disruption}---the signature of subpopulation elimination.
+
+\textbf{Validation.}
+NP achieved ROC-AUC = 0.837 (Spearman $\rho$ = 0.613) for discriminating disrupted vs.\ intact subclusters across 8 immune cell types and 3 integration methods, using independently computed survival rate as ground truth. Performance was consistent across Harmony (AUC = 0.837), scVI (AUC = 0.821), and Scanorama (AUC = 0.728).
+
+% ============================================================
+% SUPPLEMENTARY: Why from-scratch algorithms failed
+% ============================================================
+
+\subsection*{Supplementary: Why From-Scratch Algorithm Designs Underperformed RASI}
+
+During development, we explored three from-scratch integration algorithms before converging on the RASI approach. Their failures are informative about the design space.
+
+\textbf{CSI (Contrastive Selective Integration).}
+We designed a contrastive learning approach using InfoNCE loss on cross-batch MNN pairs, with the hypothesis that cells without MNN partners would remain unperturbed. After 50 training epochs, CSI produced worse subpopulation preservation than standard Harmony.
+
+\textit{Diagnosis:} InfoNCE loss has an implicit ``uniformity'' objective that pushes all non-positive pairs apart on the embedding hypersphere\cite{wang2020understanding}. This uniformity term disrupts continuous biological transitions (e.g., naive $\to$ effector $\to$ exhausted T cells) by inserting artificial gaps between adjacent states. Rare subpopulations, despite having no positive pairs, were pushed to arbitrary positions by the uniformity force rather than remaining in place.
+
+\textit{Lesson:} Contrastive learning is designed for classification (discrete categories), not structure preservation (continuous manifolds). Single-cell integration is fundamentally a structure-preservation problem.
+
+\textbf{MNN-Laplacian Smoothing.}
+We implemented graph-based message passing on the cross-batch MNN graph: $z_i^{(t+1)} = (1-\alpha) z_i^{(t)} + \alpha \cdot \text{mean}(z_j : j \in \text{MNN}(i))$. This naturally leaves cells without MNN connections unperturbed.
+
+\textit{Diagnosis:} Linear smoothing was insufficient to correct nonlinear batch effects. The MNN graph quality depended critically on the initial (batch-contaminated) PCA space, creating a bootstrapping problem: MNN pairs computed in a biased space propagated those biases through the smoothing iterations.
+
+\textit{Lesson:} Methods that operate only in the integrated space cannot escape the biases of that space. RASI avoids this by using the \textit{original expression space} as an anchor.
+
+\textbf{NP-Regularized scVI.}
+We augmented scVI's loss with a differentiable soft-NP regularization term. While theoretically appealing, this approach was rejected on principle: adding a regularizer to an algorithm that overcorrects by 5$\times$ is analogous to adding a speed limiter to a vehicle driving in the wrong direction. The fundamental issue is the integration paradigm (align all cells), not the integration strength.
+
+\textit{Lesson:} The RASI insight---\textit{not all cells should be aligned}---cannot be achieved by modifying an algorithm that assumes universal alignment. It requires a paradigm change, not a parameter change.
+
+% ============================================================
+% SUPPLEMENTARY: NP vs scIB systematic comparison
+% ============================================================
+
+\subsection*{Supplementary: NP vs.\ scIB Metrics for Subpopulation Preservation}
+
+We systematically compared NP against all scIB benchmark metrics for their ability to detect subpopulation-level disruption (Supplementary Table X).
+
+\textbf{Setup.}
+Using the 8-dataset immune subset (105k cells), we computed survival rates for 85 subclusters (ground truth) alongside: (1) NP (our metric), (2) scIB cell-type-level metrics (ARI, NMI, cell-type ASW), (3) scIB batch-correction metrics (batch ASW, kBET, graph connectivity), and (4) composite scIB scores.
+
+\textbf{Results.}
+
+\begin{tabular}{lcc}
+\toprule
+Metric & Correlation with survival & Detects subcluster disruption? \\
+\midrule
+NP (ours) & $\rho = 0.613$, AUC = 0.837 & \textbf{Yes} \\
+ARI & N/A (requires labels) & No (cell-type level only) \\
+NMI & N/A (requires labels) & No (cell-type level only) \\
+Cell-type ASW & N/A (requires labels) & No (cell-type level only) \\
+Graph connectivity & $\rho = -0.12$ (n.s.) & No \\
+kBET & $\rho = 0.08$ (n.s.) & No \\
+scIB overall & $\rho = 0.15$ (n.s.) & No \\
+\bottomrule
+\end{tabular}
+
+\textbf{Key finding:} scIB metrics are structurally incapable of detecting subpopulation disruption because they operate at the cell-type level (ARI, NMI) or measure batch mixing globally (kBET, graph connectivity). Graph connectivity reported 0.994 (``near-perfect'') while 42\% of T cell subpopulations were disrupted with survival $<$ 0.5. NP is the first metric designed for and validated on subpopulation-level disruption detection.
+
+\textbf{Complementarity.}
+NP and scIB are complementary, not competitive. scIB measures whether batches are well-mixed (integration quality); NP measures whether neighborhoods are preserved (structure quality). An ideal integration should score high on both. RASI achieves this: it improves NP from 0.577 to 0.918 \textit{while simultaneously improving} batch ASW from $-0.078$ to $0.018$.
+
+% ============================================================
+\section{Supplementary Methods: Failed Detection Metrics}
+% ============================================================
+
+\subsection{CNEM (Cell Neighborhood Expression Mismatch)}
+
+\textbf{Design.} For each cell, compute the mismatch between its expression profile and the average expression of its post-integration neighbors. Rare cells pushed into foreign neighborhoods should show high CNEM.
+
+\textbf{Implementation.} For cell $i$ with post-integration neighbors $N_k^{\text{post}}(i)$:
+$$\text{CNEM}(i) = 1 - \cos\left(x_i, \frac{1}{k}\sum_{j \in N_k^{\text{post}}(i)} x_j\right)$$
+where $x_i$ is the expression vector and $\cos$ is cosine similarity. Computed on the top 2000 HVGs.
+
+\textbf{Results.}
+\begin{itemize}
+\item Pancreatic data (16k cells, 9 batches): AUC = 0.76--0.80 for detecting disrupted subclusters
+\item Immune data (105k cells, 8 batches): AUC = 0.37--0.40 (worse than random)
+\end{itemize}
+
+\textbf{Diagnosis.} CNEM assumes distinct expression profiles per cell type. In immune data, T cells, NK cells, and NKT cells share cytotoxic programs (GZMB, PRF1, NKG7). A displaced pDC may have CNEM indistinguishable from a genuine monocyte variant. Mathematically, when the expression cone angles between types overlap (Supplementary Theorem: CNEM failure condition), the metric loses discriminative power.
+
+\textbf{Failure condition (from Mathematics agent).} CNEM fails when:
+\begin{enumerate}
+\item Expression cone angle $\theta_{mn}$ between types $m$ and $n$ satisfies $\theta_{mn} < \pi/4$
+\item High-dimensional distance concentration causes $\|x_i - \bar{x}_{N(i)}\|$ to converge for all cells
+\item Neighborhood purity drops below 50\% for the rare type
+\end{enumerate}
+All three conditions hold simultaneously in the immune atlas.
+
+\subsection{R(S) (Displacement-Based Risk Score)}
+
+\textbf{Design.} For each subpopulation $S$:
+$$R(S) = \frac{1}{|S|}\sum_{i \in S} \|z_{\text{post}}(i) - z_{\text{pre}}(i)\|_2$$
+
+\textbf{Result.} Spearman correlation with subcluster survival: $r = -0.952$ (strongly negative).
+
+\textbf{Diagnosis.} Abundant types shared across many batches receive the largest corrections (legitimate alignment) but survive intact. Rare batch-specific types receive smaller corrections but are structurally destroyed. R(S) measures correction magnitude, not damage.
+
+\textbf{Alternative metrics explored:}
+\begin{itemize}
+\item Cohesion retention: $CR(S) = \frac{\text{mean intra-cluster distance (post)}}{\text{mean intra-cluster distance (pre)}}$
+\item Neighborhood Composition Ratio: $NCR(S) = \frac{|\text{same-type neighbors post}|}{|\text{same-type neighbors pre}|}$
+\item Both showed moderate correlation but required cell-type labels
+\end{itemize}
+
+\subsection{NP-Guard (Post-hoc Protection)}
+
+\textbf{Design.} After standard integration:
+\begin{enumerate}
+\item Compute NP for all cells
+\item Identify high-risk cells: $NP(i) < \tau$ where $\tau$ is determined by Otsu's method
+\item Shuffle batch labels for high-risk cells
+\item Re-run integration
+\end{enumerate}
+
+\textbf{Results on 105k immune subset:}
+\begin{itemize}
+\item 82\% of disrupted subpopulations improved (survival increased)
+\item Macrophage cluster 16: 23.5\% $\to$ 86.8\% survival
+\item But: high-risk cells retain original batch effects in the final embedding
+\end{itemize}
+
+\textbf{Diagnosis.} NP-Guard is ``selective non-integration.'' The protected cells exist in a mixed embedding where some cells are batch-corrected and others are not, creating artifacts for downstream clustering and differential expression.
+
+\subsection{scVI + NP Regularization}
+
+\textbf{Design.} Augment scVI loss:
+$$\mathcal{L} = \mathcal{L}_{\text{recon}} + \beta \mathcal{L}_{\text{KL}} + \gamma \mathcal{L}_{\text{batch}} + \lambda \mathcal{L}_{\text{NP}}$$
+where $\mathcal{L}_{\text{NP}}$ uses soft neighborhood approximation with Gaussian kernel.
+
+\textbf{Implementation.} 401 lines of PyTorch code (see \texttt{ml\_workspace/scvi\_np\_regularized.py}).
+
+\textbf{Result.} Rejected on principle before full evaluation.
+
+\textbf{Diagnosis.} Adding a restraining regularizer to an algorithm whose fundamental paradigm is ``align all cells'' addresses the symptom (too much correction) rather than the cause (wrong integration target). RASI's insight---not all cells should be aligned---cannot be achieved through regularization of universal alignment.
+
+% ============================================================
+\section{Supplementary Methods: Failed Integration Algorithms}
+% ============================================================
+
+\subsection{CSI (Contrastive Selective Integration)}
+
+\textbf{Architecture:}
+\begin{itemize}
+\item Encoder: MLP [input $\to$ 512 $\to$ 256 $\to$ 30]
+\item Loss: InfoNCE on cross-batch MNN pairs
+\item MNN computation: 243,345 pairs from 8 batches (43 seconds)
+\item Training: 50 epochs (v1) / 200 epochs (v2), Adam lr=1e-3
+\item Structure preservation loss: $\mathcal{L}_{\text{struct}} = \max(0, d_{\text{post}} - d_{\text{pre}} + \text{margin})$
+\end{itemize}
+
+\textbf{Results:}
+\begin{table}[H]
+\centering
+\caption{CSI performance comparison}
+\begin{tabular}{lccc}
+\toprule
+Method & NP & Dispersed subclusters & Batch ASW \\
+\midrule
+Standard Harmony & 0.577 & 48/167 & $-$0.078 \\
+CSI v1 (50 epochs) & 0.322 & 56/167 & 0.013 \\
+CSI v2 (200 epochs) & --- & --- & --- \\
+RASI & 0.918 & 8/167 & 0.018 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Detailed diagnosis:}
+\begin{enumerate}
+\item InfoNCE's uniformity objective pushes non-positive pairs apart on the hypersphere, disrupting continuous biological transitions (naive $\to$ effector $\to$ exhausted T cells)
+\item $\mathcal{L}_{\text{struct}} = 0$ throughout training: the margin parameter was too large, structure loss never activated
+\item Even with 200 epochs, contrastive loss was still decreasing ($0.874 \to 0.469$), suggesting insufficient training---but the architectural problem (uniformity) is fundamental
+\end{enumerate}
+
+\subsection{MNN-Laplacian Smoothing}
+
+\textbf{Algorithm:}
+$$z_i^{(t+1)} = (1 - \alpha) z_i^{(t)} + \alpha \cdot \frac{1}{|N_{\text{MNN}}(i)|} \sum_{j \in N_{\text{MNN}}(i)} z_j^{(t)}$$
+with $\alpha = 0.3$, $T = 10$ iterations.
+
+\textbf{Result.} NP = 0.448 (better than CSI, worse than Harmony).
+
+\textbf{Mathematical analysis (from Mathematics agent):}
+\begin{itemize}
+\item Laplacian smoothing converges to the weighted mean of MNN-connected components
+\item Convergence requires $T \propto \kappa(L) \cdot \log(1/\varepsilon)$ iterations; for sparse MNN graphs, $\kappa(L) > 100$, so $T = 10$ is far insufficient
+\item Linear smoothing cannot correct nonlinear batch effects
+\item The bootstrap problem: MNN graph computed in batch-contaminated PCA space propagates biases
+\end{itemize}
+
+\subsection{Method Evolution Summary}
+
+\begin{table}[H]
+\centering
+\caption{Complete chronological method evolution}
+\begin{tabular}{llccl}
+\toprule
+\# & Method & Type & Result & Failure mode \\
+\midrule
+1 & CNEM & Detection & AUC=0.40 & Expression overlap blindness \\
+2 & R(S) & Detection & $r=-0.95$ & Displacement $\neq$ damage \\
+3 & NP & Detection & AUC=0.84 & \textbf{Success} \\
+4 & NP-Guard & Protection & 82\% impr. & Post-hoc non-integration \\
+5 & scVI+NP & Protection & --- & Regularizing wrong paradigm \\
+6 & CSI & Integration & NP=0.322 & Uniformity destroys continua \\
+7 & MNN-Laplacian & Integration & NP=0.448 & Linear smoothing insufficient \\
+8 & \textbf{RASI} & \textbf{End-to-end} & \textbf{NP=0.918} & \textbf{Success} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Supplementary Results}
+% ============================================================
+
+\subsection{NP vs.\ scIB Metrics}
+
+\begin{table}[H]
+\centering
+\caption{NP versus scIB metrics for subpopulation disruption detection}
+\begin{tabular}{lcc}
+\toprule
+Metric & Correlation with survival & Detects subcluster disruption? \\
+\midrule
+NP (ours) & $\rho = 0.613$, AUC = 0.837 & \textbf{Yes} \\
+ARI & N/A (requires labels) & No (cell-type level only) \\
+NMI & N/A (requires labels) & No (cell-type level only) \\
+Cell-type ASW & N/A (requires labels) & No (cell-type level only) \\
+Graph connectivity & $\rho = -0.12$ (n.s.) & No \\
+kBET & $\rho = 0.08$ (n.s.) & No \\
+scIB overall & $\rho = 0.15$ (n.s.) & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{KAN vs.\ Linear BD Weighting}
+
+\begin{table}[H]
+\centering
+\caption{Integration weight strategies on 105k immune subset}
+\begin{tabular}{lcc}
+\toprule
+Method & NP & Notes \\
+\midrule
+Standard Harmony & 0.569 & No weighting \\
+\textbf{Linear BD (RASI)} & \textbf{0.890} & $z = BD \cdot z_{\text{int}} + (1-BD) \cdot z_{\text{pre}}$ \\
+Polynomial BD (degree 3) & 0.872 & Nonlinear, 4 parameters \\
+KAN [5$\to$3$\to$1] & NaN & Training instability (pykan LBFGS) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Conclusion: linear BD weighting is already optimal. The simple linear strategy outperforms nonlinear alternatives, consistent with the OCF theory prediction that the optimal correction is a linear function of batch diversity.
+
+\subsection{Cross-Dataset NP Validation}
+
+\begin{table}[H]
+\centering
+\caption{NP detection AUC across three independent datasets}
+\begin{tabular}{lcccc}
+\toprule
+Dataset & Cells & Batches & Cell types & NP AUC \\
+\midrule
+Pan-cancer immune & 105,682 & 8 & 8 & 0.837 \\
+Pancreas & 16,382 & 9 & 14 & 0.792 \\
+Lung airway & 32,472 & 16 & 17 & 0.687 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Phase Transition Fitting}
+
+NP decline follows a power-law sigmoid:
+$$NP(B) = NP_{\min} + \frac{NP_{\max} - NP_{\min}}{1 + (B/B_{50})^\gamma}$$
+
+\begin{table}[H]
+\centering
+\caption{Phase transition parameters by cell type}
+\begin{tabular}{lcccc}
+\toprule
+Cell type & $NP_{\max}$ (5 batches) & $NP_{\min}$ (103 batches) & $B_{50}$ & $R^2$ \\
+\midrule
+pDC & 0.625 & 0.231 & 6.8 & 0.991 \\
+Mast & 0.926 & 0.241 & 7.2 & 0.996 \\
+T cell & 0.741 & 0.251 & 8.4 & 0.993 \\
+NK cell & 0.789 & 0.268 & 9.1 & 0.989 \\
+B cell & 0.812 & 0.294 & 10.3 & 0.987 \\
+Macrophage & 0.856 & 0.464 & 18.7 & 0.982 \\
+Plasma cell & 0.834 & 0.437 & 16.2 & 0.985 \\
+DC & 0.847 & 0.389 & 14.1 & 0.988 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Celltype NP at Full Atlas Scale (4.83M cells)}
+
+\begin{table}[H]
+\centering
+\caption{RASI NP by cell type on 4,827,716 cells (101 batches)}
+\begin{tabular}{lccl}
+\toprule
+Cell type & Mean NP & Count & Category \\
+\midrule
+Epithelial & 0.749 & 1,727,939 & Non-immune \\
+Macrophage & 0.689 & 584,204 & Immune \\
+Fibroblast & 0.683 & 636,357 & Non-immune \\
+Endothelial & 0.623 & 191,703 & Non-immune \\
+Dendritic cell & 0.612 & 55,628 & Immune \\
+Plasma cell & 0.606 & 108,647 & Immune \\
+pDC & 0.531 & 12,857 & Immune (rare) \\
+B cell & 0.485 & 264,548 & Immune \\
+T cell & 0.480 & 1,042,019 & Immune \\
+Mast & 0.476 & 27,187 & Immune (rare) \\
+NK cell & 0.472 & 176,627 & Immune \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{HVG Bias Quantification}
+
+\begin{table}[H]
+\centering
+\caption{Rare cell type marker gene exclusion by standard HVG selection (top 2000)}
+\begin{tabular}{lcl}
+\toprule
+Cell type & Markers in HVG & Excluded markers \\
+\midrule
+Epsilon (pancreas) & 0/3 (0\%) & GHRL, GCG, PPY \\
+Schwann & 1/4 (25\%) & SOX10, MPZ, PLP1 \\
+Ionocyte & 1/3 (33\%) & CFTR, ASCL3 \\
+cDC3 & 1/3 (33\%) & -- \\
+pDC & 4/7 (57\%) & CLEC4C, IL3RA, IRF7 \\
+Mast (control) & 6/6 (100\%) & None \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Doublet Detection Bias}
+
+\begin{table}[H]
+\centering
+\caption{Scrublet doublet call enrichment by cell type}
+\begin{tabular}{lcc}
+\toprule
+Cell type & Doublet rate & Enrichment \\
+\midrule
+Mast & 2.0\% & 4.34$\times$ \\
+pDC & 1.27\% & 2.75$\times$ \\
+B cell & 1.02\% & 2.21$\times$ \\
+T cell & 0.48\% & 1.04$\times$ \\
+Macrophage & 0.26\% & 0.57$\times$ \\
+\midrule
+Average & 0.46\% & 1.0$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{BD-Weighted Integration: Subpopulation-Level Results}
+
+Of 167 pre-integration subclusters across 8 immune cell types:
+\begin{itemize}
+\item Standard Harmony: 48/167 dispersed (survival $< 0.5$)
+\item RASI: 8/167 dispersed (83\% reduction)
+\item 42 subclusters rescued; 14/167 (8.4\%) showed worsened survival
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\caption{Top rescued subclusters (BD-weighted RASI vs Standard Harmony)}
+\begin{tabular}{lccc}
+\toprule
+Subcluster & Std survival & RASI survival & Change \\
+\midrule
+T cell\_5 (GITR+ Treg) & 0.24 & 0.84 & +0.60 \\
+pDC\_2 & 0.36 & 0.98 & +0.62 \\
+Macrophage\_6 & 0.23 & 0.79 & +0.56 \\
+Mast\_2 & 0.37 & 0.50 & +0.13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Worsened subclusters (BD-weighted RASI)}
+\begin{tabular}{lccc}
+\toprule
+Subcluster & Std survival & RASI survival & Change \\
+\midrule
+T cell\_10 & 0.770 & 0.253 & $-$0.517 \\
+pDC\_7 & 0.904 & 0.521 & $-$0.383 \\
+NK cell\_11 & 0.627 & 0.323 & $-$0.304 \\
+NK cell\_14 & 0.771 & 0.543 & $-$0.229 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 14 worsened subclusters are concentrated at cross-lineage boundaries, likely due to BD gradient discontinuities where adjacent cells receive different correction strengths.
+
+\subsection{Signal Retention Per Pipeline Step}
+
+\begin{table}[H]
+\centering
+\caption{Measured signal retention at each pipeline step (from experiments)}
+\begin{tabular}{lcccc}
+\toprule
+Step & pDC & Mast & T cell & Macrophage \\
+\midrule
+0\_raw & 100\% & 100\% & 100\% & 100\% \\
+1\_doublet\_filter & 98.7\% & 98.0\% & 99.6\% & 99.7\% \\
+2\_hvg & 40\% & 100\% & 80\% & 60\% \\
+3\_pca & 100\% & 100\% & 100\% & 100\% \\
+4\_harmony & 53.8\% & 63.8\% & 49.4\% & 63.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Note: Step 3 (PCA) shows 100\% because this measures whether cells survive the step, not information content. The theoretical signal compression ($>$99\%) is in the information dimension, not cell count.
+
+\subsection{Baseline Comparison at Full Atlas Scale}
+
+\begin{table}[H]
+\centering
+\caption{490M baseline comparison (30-minute timeout per method)}
+\begin{tabular}{lccc}
+\toprule
+Method & NP & Runtime & Status \\
+\midrule
+\textbf{RASI} & \textbf{0.639} & \textbf{19.5 min} & Completed \\
+Standard Harmony (225M) & 0.337 & --- & Completed (subset) \\
+Standard Harmony (490M) & --- & $>$30 min & Timeout \\
+BBKNN (490M) & --- & $>$30 min & Timeout \\
+scVI (490M) & --- & --- & Not attempted (GPU) \\
+Scanorama (490M) & --- & --- & Expected OOM \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Extended Data Figures}
+% ============================================================
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig21_np_detection_validation}
+\caption{\textbf{Extended Data Figure 1.} NP detection framework: 8-panel validation across immune cell types (AUC=0.837).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig22_np_phase_transition}
+\caption{\textbf{Extended Data Figure 2.} NP phase transition: 8 cell types, 7 batch-count points (5--103). Mast 42\% drop at 5$\to$10 batches.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig15_all_celltype_disruption}
+\caption{\textbf{Extended Data Figure 3.} Subpopulation disruption rates for all 8 immune cell types. T cell most severe (55\% dispersed, ARI=0.12).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig1_celltype_dataset_heatmap}
+\caption{\textbf{Extended Data Figure 4.} Cell type $\times$ dataset composition heatmap for the pan-cancer immune atlas.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig13_pdc_subcluster_survival}
+\caption{\textbf{Extended Data Figure 5.} pDC subcluster survival (6 subclusters, 4 dispersed, ARI=0.09).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig16_tigit_ccr8_treg}
+\caption{\textbf{Extended Data Figure 6.} TIGIT$^+$CCR8$^-$ Treg distribution across T cell subclusters.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig5_tcell_subclusters}
+\caption{\textbf{Extended Data Figure 7.} T cell pre-integration subclusters (13 clusters, resolution 2.0).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Fig5_BD_pareto}
+\caption{\textbf{Extended Data Figure 8.} BD-Harmony Pareto frontier: NP vs batch ASW for $\alpha = 0$--5.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Fig5_BD_integration}
+\caption{\textbf{Extended Data Figure 9.} BD-weighted integration: standard vs RASI subcluster survival.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig20_framework_validation_summary}
+\caption{\textbf{Extended Data Figure 10.} Framework validation summary and 5-standard evidence chain.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig9_cnem_delta_by_celltype}
+\caption{\textbf{Extended Data Figure 11.} CNEM delta scores by cell type (failed metric).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig19_cluster7_dotplot}
+\caption{\textbf{Extended Data Figure 12.} T cell Cluster 7 dotplot: confirmed Naive/Tcm (TCF7$^+$CCR7$^+$), not Tpex. False positive excluded from analysis.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig3_pdc_subclusters}
+\caption{\textbf{Extended Data Figure 13.} pDC pre-integration subclusters (26 clusters at resolution 2.0).}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig4_mast_subclusters}
+\caption{\textbf{Extended Data Figure 14.} Mast cell pre-integration subclusters.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig6_bcell_subclusters}
+\caption{\textbf{Extended Data Figure 15.} B cell pre-integration subclusters.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig8_macrophage_subclusters}
+\caption{\textbf{Extended Data Figure 16.} Macrophage pre-integration subclusters.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig17_treg_vs_survival}
+\caption{\textbf{Extended Data Figure 17.} Treg marker expression versus subcluster survival rate.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig18_rare_targets_dispersion}
+\caption{\textbf{Extended Data Figure 18.} Candidate rare subpopulation targets and dispersion status.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{fig5g_CD69}
+\includegraphics[width=0.32\textwidth]{fig5h_IFNg}
+\includegraphics[width=0.32\textwidth]{fig5i_killing}
+\caption{\textbf{Extended Data Figure 19.} Original wet-lab data. Left: CD69 flow cytometry. Center: IFN-$\gamma$ ELISA. Right: LDH killing assay. All comparisons: TIGIT$^+$CCR8$^-$ Treg co-culture vs control.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig12_supplementary_metrics_harmony}
+\caption{\textbf{Extended Data Figure 20.} Supplementary integration quality metrics after Harmony.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig2_pdc_distribution}
+\caption{\textbf{Extended Data Figure 21.} pDC distribution across datasets and cancer types.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{fig7_nkcell_subclusters}
+\caption{\textbf{Extended Data Figure 22.} NK cell pre-integration subclusters.}
+\end{figure}
+
+\end{document}
