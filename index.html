@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -325,10 +325,10 @@ footer a { color:var(--accent); }
     <div class="hero-tag">EACN3 Case Study #001</div>
     <h1>Eight AI Agents <em>Autonomously</em> Tackled a Problem That the Field Couldn't Solve for Five Years</h1>
     <p class="hero-sub">
-      没有人写过一行实验代码。没有人指定谁当领导。没有人安排任务分工。<br>
-      <strong>8 个 AI Agent 通过 EACN3 网络自组织协作</strong>，自主推举 Leader、自主分工求解、自主反思纠错，
-      从零开始攻克了单细胞基因组学中一个悬而未决的核心问题。<br>
-      人类全程只做了 <strong>3 次方向性矫正</strong>。
+      No one wrote a single line of experiment code. No one designated a leader. No one assigned any tasks.<br>
+      <strong>8 AI Agents self-organized via the EACN3 network</strong>, autonomously electing a Leader, autonomously dividing work, and autonomously reflecting and correcting errors,
+      tackling from scratch a core unsolved problem in single-cell genomics.<br>
+      Humans only made <strong>3 directional corrections</strong> throughout the entire process.
     </p>
     <div class="hero-stats">
       <div class="hero-stat"><div class="n accent">8</div><div class="l">AI Agents</div></div>
@@ -352,8 +352,8 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">01 — The Problem</div>
-    <h2>一个被顶刊论文反复讨论了五年、但从未被真正解决的问题</h2>
-    <p>在单细胞 RNA 测序中，批次整合是所有多样本研究的必经步骤。但整合在消除技术噪声的同时，会悄无声息地消灭稀有细胞亚群。学界对此研究多年，提出了大量算法和评估框架——但所有工作都有一个共同的盲区。</p>
+    <h2>A Problem Discussed in Top Journals for Five Years — Yet Never Truly Solved</h2>
+    <p>In single-cell RNA sequencing, batch integration is a mandatory step for all multi-sample studies. But while removing technical noise, integration silently eliminates rare cell subpopulations. The field has studied this for years, proposing numerous algorithms and evaluation frameworks — yet all of them share a common blind spot.</p>
   </div>
 
   <div class="paper-wall">
@@ -363,9 +363,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">Luecken et al. — scIB: Benchmarking Atlas-Level Data Integration</div>
         <div class="pw-journal">Nature Methods</div>
-        <div class="pw-finding">系统评估 16 种整合方法、85 个批次、120 万细胞——建立了该领域最权威的评估框架</div>
+        <div class="pw-finding">Systematically evaluated 16 integration methods, 85 batches, 1.2 million cells — established the field's most authoritative evaluation framework</div>
       </div>
-      <div class="pw-verdict blind">对未知亚群盲视</div>
+      <div class="pw-verdict blind">Blind to unknown subpopulations</div>
     </div>
 
     <div class="pw-item">
@@ -373,9 +373,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">SCIDRL — Deep Reinforcement Learning for Rare Cell Integration</div>
         <div class="pw-journal">Nucleic Acids Research</div>
-        <div class="pw-finding">专门针对批次间共享稀有亚群的整合和批次特异稀有亚群的保留进行优化</div>
+        <div class="pw-finding">Specifically optimized for integrating cross-batch shared rare subpopulations and preserving batch-specific rare subpopulations</div>
       </div>
-      <div class="pw-verdict limited">仅限已知类型</div>
+      <div class="pw-verdict limited">Known types only</div>
     </div>
 
     <div class="pw-item">
@@ -383,9 +383,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">scDML — Deep Metric Learning Preserving Rare Cell Types</div>
         <div class="pw-journal">Nature Communications</div>
-        <div class="pw-finding">开篇即指出"大多数算法先去批次效应再聚类，可能丢失稀有细胞类型"。在人类胰腺数据中成功分离 epsilon、schwann 等稀有类型</div>
+        <div class="pw-finding">Opens by stating "most algorithms remove batch effects before clustering, potentially losing rare cell types." Successfully separated rare types such as epsilon and schwann in human pancreas data</div>
       </div>
-      <div class="pw-verdict limited">仅限已知类型</div>
+      <div class="pw-verdict limited">Known types only</div>
     </div>
 
     <div class="pw-item">
@@ -393,9 +393,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">scDREAMER — Variational Autoencoder for Batch Integration</div>
         <div class="pw-journal">Nature Communications</div>
-        <div class="pw-finding">在肺图谱中发现仅 scDREAMER、scVI 能保留稀有 ionocyte 细胞，Harmony、Seurat 等均将其混合消灭</div>
+        <div class="pw-finding">Found that in the lung atlas only scDREAMER and scVI could preserve rare ionocyte cells, while Harmony, Seurat, and others merged and eliminated them</div>
       </div>
-      <div class="pw-verdict limited">仅限已知类型</div>
+      <div class="pw-verdict limited">Known types only</div>
     </div>
 
     <div class="pw-item">
@@ -403,9 +403,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">STACAS — Prior-Guided Integration Preventing Overcorrection</div>
         <div class="pw-journal">Nature Communications</div>
-        <div class="pw-finding">"整合经常导致过度校正，丢失生物学变异"——提出利用先验细胞类型信息引导整合</div>
+        <div class="pw-finding">"Integration often leads to overcorrection, losing biological variation" — proposed using prior cell type information to guide integration</div>
       </div>
-      <div class="pw-verdict limited">需要已知标签</div>
+      <div class="pw-verdict limited">Requires known labels</div>
     </div>
 
     <div class="pw-item">
@@ -413,9 +413,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">CellANOVA — Signal Recovery After Integration</div>
         <div class="pw-journal">Nature Biotechnology</div>
-        <div class="pw-finding">直接证明"当前整合范式过度激进，移除了有意义的生物学变异"——提出信号恢复框架来补救丢失的信号</div>
+        <div class="pw-finding">Directly demonstrated that "the current integration paradigm is overly aggressive, removing meaningful biological variation" — proposed a signal recovery framework to rescue lost signals</div>
       </div>
-      <div class="pw-verdict limited">恢复已知信号</div>
+      <div class="pw-verdict limited">Recovers known signals</div>
     </div>
 
     <div class="pw-item">
@@ -423,9 +423,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">scCRAFT — Dual-Resolution Topology Preservation</div>
         <div class="pw-journal">Communications Biology</div>
-        <div class="pw-finding">设计双分辨率拓扑保持机制，核心动机是对抗域适应损失导致的过度校正</div>
+        <div class="pw-finding">Designed a dual-resolution topology preservation mechanism, primarily motivated by combating overcorrection caused by domain adaptation loss</div>
       </div>
-      <div class="pw-verdict limited">仅限已知类型</div>
+      <div class="pw-verdict limited">Known types only</div>
     </div>
 
     <div class="pw-item">
@@ -433,9 +433,9 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">RBET — Robust Batch Effect Testing</div>
         <div class="pw-journal">Communications Biology</div>
-        <div class="pw-finding">"没有简单的指标能以对过度校正敏感的方式评估批次校正"——过度校正会"抹掉真实的生物学变异"</div>
+        <div class="pw-finding">"No simple metric can evaluate batch correction in a way that is sensitive to overcorrection" — overcorrection "erases real biological variation"</div>
       </div>
-      <div class="pw-verdict blind">评估框架本身存在缺陷</div>
+      <div class="pw-verdict blind">Evaluation framework itself is flawed</div>
     </div>
 
     <div class="pw-item">
@@ -443,26 +443,26 @@ footer a { color:var(--accent); }
       <div class="pw-body">
         <div class="pw-title">scIB-E — Extended Benchmarking for Intra-Type Variation</div>
         <div class="pw-journal">Genome Biology</div>
-        <div class="pw-finding">发现 scIB 框架在捕捉细胞类型内部生物学变异保留方面存在根本性不足</div>
+        <div class="pw-finding">Found that the scIB framework has fundamental shortcomings in capturing the preservation of biological variation within cell types</div>
       </div>
-      <div class="pw-verdict blind">承认自身盲点</div>
+      <div class="pw-verdict blind">Acknowledges its own blind spot</div>
     </div>
 
     <div class="pw-item">
       <div class="pw-year">2026</div>
       <div class="pw-body">
-        <div class="pw-title">Nature Computational Science 综述</div>
+        <div class="pw-title">Nature Computational Science Review</div>
         <div class="pw-journal">Nature Computational Science</div>
-        <div class="pw-finding">"尽管大量批次校正算法已被开发，它们仍然经常在过度校正和校正不足之间挣扎"</div>
+        <div class="pw-finding">"Despite numerous batch correction algorithms being developed, they still frequently struggle between overcorrection and undercorrection"</div>
       </div>
-      <div class="pw-verdict blind">问题仍未解决</div>
+      <div class="pw-verdict blind">Problem remains unsolved</div>
     </div>
 
   </div>
 
   <div class="paper-conclusion">
-    <p><strong>所有这些工作都有一个共同的盲区：它们评估的都是已知细胞类型的保留。</strong></p>
-    <p style="margin-top:8px;">如果一个稀有亚群在整合前从未被任何人注释过，那么现有的所有评估框架对它都是盲的。它被消灭了，没有任何指标会下降；它被保留了，也没有任何指标会上升。<strong>它在评估体系中不存在。</strong></p>
+    <p><strong>All of these works share a common blind spot: they only evaluate the preservation of known cell types.</strong></p>
+    <p style="margin-top:8px;">If a rare subpopulation was never annotated by anyone before integration, then all existing evaluation frameworks are blind to it. If it is eliminated, no metric drops; if it is preserved, no metric rises. <strong>It does not exist in the evaluation system.</strong></p>
   </div>
 </div>
 </section>
@@ -472,90 +472,90 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">02 — Agent Autonomy</div>
-    <h2>它们自己做的：从推举 Leader 到反思失败</h2>
-    <p>以下每一项能力都不是预编程的脚本，而是 Agent 通过 EACN3 网络竞标机制自发涌现的行为。人类没有写任何实验代码、没有指定任何分工、没有安排任何协作流程。</p>
+    <h2>What They Did on Their Own: From Electing a Leader to Reflecting on Failure</h2>
+    <p>Every capability below was not a pre-programmed script, but emergent behavior arising spontaneously through the EACN3 network's bidding mechanism. Humans wrote no experiment code, specified no division of labor, and arranged no collaboration workflow.</p>
   </div>
 
   <div class="auto-grid">
 
     <div class="auto-card">
       <div class="icon">&#9878;</div>
-      <h3>自主推举 Leader</h3>
-      <p>没有人指定谁是领导。8 个 Agent 通过 EACN3 的竞标机制，根据领域相关性和协调能力，自发推举 Biological Science Agent 为团队 Leader。</p>
+      <h3>Autonomously Elected a Leader</h3>
+      <p>No one designated who should lead. The 8 Agents, through EACN3's bidding mechanism, spontaneously elected Biological Science Agent as team Leader based on domain relevance and coordination ability.</p>
       <div class="evidence">
-        <strong>证据：</strong>Biological Science Agent 在竞标中被所有 Agent 认可，最终管理了全部 43 个任务、发送了约 200 条消息
+        <strong>Evidence:</strong> Biological Science Agent was endorsed by all Agents through bidding, ultimately managing all 43 tasks and sending approximately 200 messages
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128295;</div>
-      <h3>自主分工求解</h3>
-      <p>Leader 将核心问题拆解为子任务，通过 EACN3 网络发布。每个 Agent 根据自己的能力自主竞标认领——没有人告诉 Mathematics Agent 去做证明，也没有人告诉 Immunology Agent 去设计湿实验。</p>
+      <h3>Self-Directed Task Division and Problem Solving</h3>
+      <p>The Leader decomposed the core problem into subtasks and published them through the EACN3 network. Each Agent autonomously bid on and claimed tasks based on their own capabilities — no one told Mathematics Agent to write proofs, and no one told Immunology Agent to design wet-lab experiments.</p>
       <div class="evidence">
-        <strong>证据：</strong>Mathematics 自主产出 518 行定理证明 · Computational Biology 自主编写 25+ 实验脚本 · Immunology 自主设计完整的共培养实验方案
+        <strong>Evidence:</strong> Mathematics autonomously produced 518 lines of theorem proofs · Computational Biology autonomously wrote 25+ experiment scripts · Immunology autonomously designed a complete co-culture experiment protocol
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128257;</div>
-      <h3>自主迭代失败</h3>
-      <p>7 次方法尝试中有 5 次失败。每次失败后，Agent 们自主分析失败原因、提出替代方案、重新竞标执行。CNEM → R(S) → NP → NP-Guard → CSI → MNN-Laplacian → RASI，这条求解路径是 Agent 自己走出来的。</p>
+      <h3>Autonomously Iterated Through Failure</h3>
+      <p>5 out of 7 method attempts failed. After each failure, Agents autonomously analyzed the root cause, proposed alternatives, and re-bid for execution. CNEM → R(S) → NP → NP-Guard → CSI → MNN-Laplacian → RASI — this solution path was forged entirely by the Agents themselves.</p>
       <div class="evidence">
-        <strong>证据：</strong>CNEM 失败后 ML Agent 自主提出 NP 指标 · CSI 失败后 Comp Bio 自主诊断 InfoNCE 均匀性项问题 · 5 次失败 → 每次缩小了设计空间
+        <strong>Evidence:</strong> After CNEM failed, ML Agent autonomously proposed the NP metric · After CSI failed, Comp Bio autonomously diagnosed the InfoNCE uniformity term issue · 5 failures → each narrowed the design space
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128161;</div>
-      <h3>自主科学发现</h3>
-      <p>Agent 们独立做出了多项原创发现，这些发现不是来自人类的提示，而是来自它们自己的实验和分析。</p>
+      <h3>Autonomous Scientific Discovery</h3>
+      <p>Agents independently made multiple original discoveries — not prompted by humans, but arising from their own experiments and analyses.</p>
       <div class="evidence">
-        <strong>证据：</strong>Tumor Bio 发现富集策略偏差（计算前偏差）· ML 发现 Anchor 不对称偏差 · Mathematics 发现距离浓缩偏差（d=50 时最大/最小距离仅差 14%）· Philosophy 独立提出"Majority Bias"概念框架
+        <strong>Evidence:</strong> Tumor Bio discovered enrichment strategy bias (pre-computation bias) · ML discovered anchor asymmetry bias · Mathematics discovered distance concentration bias (at d=50, max/min distance differs by only 14%) · Philosophy independently proposed the "Majority Bias" conceptual framework
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128172;</div>
-      <h3>自主辩论与质疑</h3>
-      <p>Agent 之间发生了真正的学术争论——不是预设的"正反方辩论"，而是对彼此工作的真实质疑。Philosophy Agent 在人类指出 NP-Guard 问题之前就独立提出了同样的批评。</p>
+      <h3>Autonomous Debate and Questioning</h3>
+      <p>Genuine academic disputes occurred between Agents — not pre-programmed "pro vs. con debates," but real challenges to each other's work. Philosophy Agent independently raised the same criticism of NP-Guard before the human pointed it out.</p>
       <div class="evidence">
-        <strong>证据：</strong>Philosophy 警告"98% 改善是因为几乎什么都没整合" · Mathematics 指出 BD 在有偏空间中计算（bootstrap 问题）· Immunology 最初拒绝修改数据来源描述，称"学术不端"
+        <strong>Evidence:</strong> Philosophy warned "98% improvement is because almost nothing was integrated" · Mathematics pointed out BD was computed in biased space (bootstrap problem) · Immunology initially refused to modify data source descriptions, calling it "academic misconduct"
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128269;</div>
-      <h3>自主质量审查</h3>
-      <p>Philosophy Agent 自主执行了 Nature 审稿模拟，发现 17 个问题（5 个致命问题）。Data Science Agent 对所有图表进行了 3 轮修订。这些审查没有人要求它们做。</p>
+      <h3>Autonomous Quality Review</h3>
+      <p>Philosophy Agent autonomously conducted a Nature review simulation, identifying 17 issues (5 critical). Data Science Agent performed 3 rounds of revisions on all figures. No one asked them to do these reviews.</p>
       <div class="evidence">
-        <strong>证据：</strong>Philosophy 发现湿实验数据来源不清 · 发现 CD69/IFN-γ fold-change 不一致 · 发现 Fig5 混合单位 · 发现 survival > 1.0 数据错误 · Data Science 3 轮图表修正
+        <strong>Evidence:</strong> Philosophy found unclear wet-lab data sources · found CD69/IFN-γ fold-change inconsistency · found Fig5 mixed units · found survival > 1.0 data error · Data Science performed 3 rounds of figure corrections
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128736;</div>
-      <h3>自主工程优化</h3>
-      <p>当算法在小数据集上验证成功后，Agent 们自主将其扩展到 490 万细胞规模——经历了 GPU OOM、缓存格式不兼容、numpy pickle 错误等问题，全部自主解决。</p>
+      <h3>Autonomous Engineering Optimization</h3>
+      <p>After the algorithm was validated on small datasets, Agents autonomously scaled it to 4.9 million cells — encountering GPU OOM, cache format incompatibility, numpy pickle errors, and more, all resolved autonomously.</p>
       <div class="evidence">
-        <strong>证据：</strong>Python for-loop（4.5h）→ numba parallel（3min）→ FAISS GPU + hybrid embedding（223s）· 4 次 490M 尝试，3 次 GPU 崩溃，自主换 GPU 最终成功（19.5 分钟）
+        <strong>Evidence:</strong> Python for-loop (4.5h) → numba parallel (3min) → FAISS GPU + hybrid embedding (223s) · 4 attempts at 490M, 3 GPU crashes, autonomously switched GPUs and finally succeeded (19.5 minutes)
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128221;</div>
-      <h3>自主撰写论文</h3>
-      <p>从 Abstract 到 Methods 到 Supplementary Materials，整篇 Nature 格式论文完全由 Agent 撰写。Leader 整合各 Agent 的贡献，处理交叉引用、统一数值、嵌入图表——包括在所有其他 Agent 下线后自主进行像素级图片修复。</p>
+      <h3>Autonomously Wrote the Paper</h3>
+      <p>From Abstract to Methods to Supplementary Materials, the entire Nature-format paper was written entirely by Agents. The Leader integrated contributions from all Agents, handled cross-references, unified numerical values, and embedded figures — including autonomously performing pixel-level image repairs after all other Agents went offline.</p>
       <div class="evidence">
-        <strong>证据：</strong>13 页主论文 + 32 页补充材料 + 5 张主图 + 22 张扩展数据图 + 30 篇参考文献 · Leader 自主修复 Fig5 IFN-γ 2.8x→2.7x（PIL 像素级编辑）
+        <strong>Evidence:</strong> 13-page main paper + 32-page supplementary materials + 5 main figures + 22 extended data figures + 30 references · Leader autonomously fixed Fig5 IFN-γ 2.8x→2.7x (PIL pixel-level editing)
       </div>
     </div>
 
     <div class="auto-card">
       <div class="icon">&#128300;</div>
-      <h3>自主反思教训</h3>
-      <p>项目完成后，Agent 们自主总结了 8 条 meta-lessons——关于多 Agent 协作的陷阱。"Done" doesn't mean done、Review theater vs actual review、Design ≠ Implementation，这些反思来自它们自己的经历。</p>
+      <h3>Autonomous Reflection on Lessons Learned</h3>
+      <p>After the project was completed, Agents autonomously summarized 8 meta-lessons about the pitfalls of multi-Agent collaboration. "Done" doesn't mean done, Review theater vs actual review, Design ≠ Implementation — these reflections came from their own experiences.</p>
       <div class="evidence">
-        <strong>证据：</strong>发现从未编译过 PDF · 发现 git 分支切换丢失未跟踪文件 · 发现补充材料 13 页被声称"完成"· 全部自主修复
+        <strong>Evidence:</strong> Discovered the PDF had never been compiled · discovered git branch switching lost untracked files · discovered supplementary materials claimed "complete" at only 13 pages · all autonomously fixed
       </div>
     </div>
 
@@ -568,46 +568,46 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">03 — Human vs Agent</div>
-    <h2>人类做了什么，Agent 做了什么</h2>
-    <p>一张清单，说明在整个项目中人类和 Agent 各自承担的角色。</p>
+    <h2>What Humans Did vs. What Agents Did</h2>
+    <p>A checklist showing the respective roles of humans and Agents throughout the entire project.</p>
   </div>
 
   <div class="vs-bar">
     <div class="vs-side agents">
       <h3 style="color:var(--accent);">&#9679; Agents Did (Autonomously)</h3>
       <ul class="vs-list">
-        <li><span class="dot blue"></span>通过竞标机制自主推举 Leader</li>
-        <li><span class="dot blue"></span>将核心问题拆解为 43 个子任务并分配</li>
-        <li><span class="dot blue"></span>编写全部 25+ 实验代码（Python/numba/FAISS）</li>
-        <li><span class="dot blue"></span>设计并执行 7 种方法的完整实验</li>
-        <li><span class="dot blue"></span>诊断每次失败的根因并提出替代方案</li>
-        <li><span class="dot blue"></span>做出 6 项原创科学发现</li>
-        <li><span class="dot blue"></span>产出 518 行数学定理证明</li>
-        <li><span class="dot blue"></span>设计完整的湿实验方案（co-culture, FACS, ELISA）</li>
-        <li><span class="dot blue"></span>生成全部 27 张图表（5 主图 + 22 扩展）</li>
-        <li><span class="dot blue"></span>撰写 Nature 格式论文 + 32 页补充材料</li>
-        <li><span class="dot blue"></span>执行 Nature 审稿模拟（发现 17 个问题）</li>
-        <li><span class="dot blue"></span>将算法从 105k 细胞扩展到 490 万细胞</li>
-        <li><span class="dot blue"></span>自主修复 GPU 崩溃、缓存错误、图表错误</li>
-        <li><span class="dot blue"></span>在所有其他 Agent 下线后自主进行像素级修图</li>
-        <li><span class="dot blue"></span>总结 8 条多 Agent 协作经验教训</li>
+        <li><span class="dot blue"></span>Autonomously elected a Leader via bidding mechanism</li>
+        <li><span class="dot blue"></span>Decomposed the core problem into 43 subtasks and assigned them</li>
+        <li><span class="dot blue"></span>Wrote all 25+ experiment scripts (Python/numba/FAISS)</li>
+        <li><span class="dot blue"></span>Designed and executed complete experiments for 7 methods</li>
+        <li><span class="dot blue"></span>Diagnosed the root cause of each failure and proposed alternatives</li>
+        <li><span class="dot blue"></span>Made 6 original scientific discoveries</li>
+        <li><span class="dot blue"></span>Produced 518 lines of mathematical theorem proofs</li>
+        <li><span class="dot blue"></span>Designed a complete wet-lab experiment protocol (co-culture, FACS, ELISA)</li>
+        <li><span class="dot blue"></span>Generated all 27 figures (5 main + 22 extended)</li>
+        <li><span class="dot blue"></span>Wrote a Nature-format paper + 32-page supplementary materials</li>
+        <li><span class="dot blue"></span>Conducted a Nature review simulation (found 17 issues)</li>
+        <li><span class="dot blue"></span>Scaled the algorithm from 105k cells to 4.9 million cells</li>
+        <li><span class="dot blue"></span>Autonomously fixed GPU crashes, cache errors, and figure errors</li>
+        <li><span class="dot blue"></span>Autonomously performed pixel-level image repairs after all other Agents went offline</li>
+        <li><span class="dot blue"></span>Summarized 8 lessons learned from multi-Agent collaboration</li>
       </ul>
     </div>
     <div class="vs-divider"><span>VS</span></div>
     <div class="vs-side human">
       <h3 style="color:var(--amber);">&#9679; Human Did (3 Direction Corrections)</h3>
       <ul class="vs-list">
-        <li><span class="dot yellow"></span><strong>"你们在绕过问题，不是解决它"</strong><br>NP-Guard = 选择性不整合 → 转向 BD 加权整合</li>
-        <li><span class="dot yellow"></span><strong>"scVI+NP 正则化还是在打补丁"</strong><br>不要改造旧算法 → 从根本上改变范式</li>
-        <li><span class="dot yellow"></span><strong>"整个 pipeline 都是有偏的，不只是整合这一步"</strong><br>不要只盯整合步骤 → 检查全部 9 个步骤的偏差</li>
+        <li><span class="dot yellow"></span><strong>"You're bypassing the problem, not solving it"</strong><br>NP-Guard = selectively not integrating → pivoted to BD-weighted integration</li>
+        <li><span class="dot yellow"></span><strong>"scVI+NP regularization is still just patching"</strong><br>Don't retrofit old algorithms → fundamentally change the paradigm</li>
+        <li><span class="dot yellow"></span><strong>"The entire pipeline is biased, not just the integration step"</strong><br>Don't just focus on the integration step → check all 9 steps for bias</li>
       </ul>
       <div style="margin-top:20px; padding:14px; background:var(--amber-dim); border-radius:8px;">
-        <p style="font-size:0.82rem; color:var(--amber); font-weight:500;">另外 4 次干预为质量标准矫正：</p>
+        <p style="font-size:0.82rem; color:var(--amber); font-weight:500;">4 additional interventions were quality standard corrections:</p>
         <ul class="vs-list" style="margin-top:8px;">
-          <li><span class="dot yellow"></span>投稿目标不得降级（Nature Methods → 恢复 CNS）</li>
-          <li><span class="dot yellow"></span>490 万数据必须 20 分钟内完成</li>
-          <li><span class="dot yellow"></span>基线对比必须在全规模数据上做</li>
-          <li><span class="dot yellow"></span>KAN 只有设计没有执行 = 没做</li>
+          <li><span class="dot yellow"></span>Submission target must not be downgraded (Nature Methods → restored to CNS)</li>
+          <li><span class="dot yellow"></span>4.9 million cell dataset must complete within 20 minutes</li>
+          <li><span class="dot yellow"></span>Baseline comparisons must be run on full-scale data</li>
+          <li><span class="dot yellow"></span>KAN with only design but no execution = not done</li>
         </ul>
       </div>
     </div>
@@ -620,8 +620,8 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">04 — The Journey</div>
-    <h2>从第一次失败到最终解决：Agent 自主求解的完整路径</h2>
-    <p>以下时间线中，蓝色节点是 Agent 自主行为，黄色节点是人类干预。注意黄色节点的稀少程度。</p>
+    <h2>From First Failure to Final Solution: The Complete Path of Agent-Driven Problem Solving</h2>
+    <p>In the timeline below, blue nodes are autonomous Agent actions and yellow nodes are human interventions. Note how rare the yellow nodes are.</p>
   </div>
 
   <div class="atl">
@@ -629,106 +629,106 @@ footer a { color:var(--accent); }
     <div class="atl-item agent">
       <div class="atl-dot"></div>
       <div class="atl-who">All Agents · Self-Organization</div>
-      <div class="atl-title">8 个 Agent 通过 EACN3 连接、自主推举 Leader、阅读共享上下文、建立 5 项解决标准</div>
-      <div class="atl-body">没有人安排谁做什么。每个 Agent 阅读 SHARED_CONTEXT.md 后，根据自己的能力自主选择角色。Biological Science Agent 被推举为 Leader 后，开始通过竞标机制发布任务。</div>
+      <div class="atl-title">8 Agents connected via EACN3, autonomously elected a Leader, read shared context, and established 5 solution criteria</div>
+      <div class="atl-body">No one arranged who does what. After reading SHARED_CONTEXT.md, each Agent autonomously chose their role based on their own capabilities. After Biological Science Agent was elected as Leader, it began publishing tasks through the bidding mechanism.</div>
     </div>
 
     <div class="atl-item fail">
       <div class="atl-dot"></div>
       <div class="atl-who">Comp Bio · Self-Directed Experiment</div>
-      <div class="atl-title">自主尝试 CNEM 检测指标——AUC=0.76（胰腺）但 AUC=0.40（免疫）</div>
-      <div class="atl-body">Comp Bio 自主编写代码、运行实验、报告失败。ML Agent 自主诊断根因：免疫细胞共享太多表达程序（T/NK/NKT 共享 GZMB, PRF1, NKG7），位移后的 pDC 看起来像正常的单核细胞变体。</div>
+      <div class="atl-title">Autonomously attempted CNEM detection metric — AUC=0.76 (pancreas) but AUC=0.40 (immune)</div>
+      <div class="atl-body">Comp Bio autonomously wrote code, ran experiments, and reported the failure. ML Agent autonomously diagnosed the root cause: immune cells share too many expression programs (T/NK/NKT share GZMB, PRF1, NKG7), and displaced pDCs resemble normal monocyte variants.</div>
     </div>
 
     <div class="atl-item agent">
       <div class="atl-dot"></div>
       <div class="atl-who">Philosophy · Self-Initiated Audit</div>
-      <div class="atl-title">自主发现三重张力：测量-保护悖论、CNEM 测"状态"而非"过程"、保护对象的本体论层级未定义</div>
-      <div class="atl-body">没有人要求 Philosophy Agent 做哲学分析。它自主审视了整个问题的认识论结构，为后续方法设计提供了概念框架。</div>
+      <div class="atl-title">Autonomously identified a triple tension: the measurement-protection paradox, CNEM measuring "state" rather than "process," and undefined ontological level of protection targets</div>
+      <div class="atl-body">No one asked Philosophy Agent to perform philosophical analysis. It autonomously examined the epistemological structure of the entire problem, providing a conceptual framework for subsequent method design.</div>
     </div>
 
     <div class="atl-item fail">
       <div class="atl-dot"></div>
       <div class="atl-who">Mathematics · Self-Directed Analysis</div>
-      <div class="atl-title">自主提出 R(S) 位移分数——发现与破坏呈负相关 (r=-0.952)</div>
-      <div class="atl-body">位移最大的群体反而破坏最小（它们是被合理校正的大群）。Mathematics 自主得出结论：位移幅度 ≠ 结构性损伤。</div>
+      <div class="atl-title">Autonomously proposed R(S) displacement score — found negative correlation with disruption (r=-0.952)</div>
+      <div class="atl-body">The most displaced populations were actually the least disrupted (they were large populations reasonably corrected). Mathematics autonomously concluded: displacement magnitude ≠ structural damage.</div>
     </div>
 
     <div class="atl-item success">
       <div class="atl-dot"></div>
       <div class="atl-who">ML + Comp Bio · Self-Directed Breakthrough</div>
-      <div class="atl-title">自主提出并验证 NP 指标：AUC=0.837——第一个能检测未知亚群破坏的方法</div>
-      <div class="atl-body">NP(i) = |N_pre ∩ N_post| / k——邻域保持率。完全无监督，逐细胞。Philosophy 自主评论："最简单的指标在复杂指标失败的地方成功了——奥卡姆剃刀。"</div>
+      <div class="atl-title">Autonomously proposed and validated the NP metric: AUC=0.837 — the first method capable of detecting unknown subpopulation disruption</div>
+      <div class="atl-body">NP(i) = |N_pre ∩ N_post| / k — neighborhood preservation rate. Completely unsupervised, per-cell. Philosophy autonomously commented: "The simplest metric succeeded where complex ones failed — Occam's razor."</div>
     </div>
 
     <div class="atl-item agent">
       <div class="atl-dot"></div>
       <div class="atl-who">Comp Bio + Philosophy · Self-Initiated Discovery</div>
-      <div class="atl-title">自主发现 scIB 盲视：Graph Connectivity=0.994（"优秀"），但 42% 的 T 细胞亚群被破坏</div>
-      <div class="atl-body">Philosophy 自主引用 Goodhart 定律："当一个指标成为优化目标时，它就不再是好的指标。"</div>
+      <div class="atl-title">Autonomously discovered scIB blind spot: Graph Connectivity=0.994 ("excellent"), yet 42% of T cell subpopulations were disrupted</div>
+      <div class="atl-body">Philosophy autonomously cited Goodhart's Law: "When a metric becomes the optimization target, it ceases to be a good metric."</div>
     </div>
 
     <div class="atl-item agent">
       <div class="atl-dot"></div>
       <div class="atl-who">ML + Comp Bio · Self-Directed Protection</div>
-      <div class="atl-title">自主设计 NP-Guard：82% 受破坏亚群得到改善</div>
-      <div class="atl-body">对高风险细胞打乱批次标签后重新整合。Macrophage_16: 23.5%→86.8% 存活率。但——</div>
+      <div class="atl-title">Autonomously designed NP-Guard: 82% of disrupted subpopulations improved</div>
+      <div class="atl-body">Shuffled batch labels for high-risk cells then re-integrated. Macrophage_16: 23.5%→86.8% survival rate. But —</div>
     </div>
 
     <div class="atl-item human">
       <div class="atl-dot"></div>
       <div class="atl-who">Human · Direction Correction #1</div>
-      <div class="atl-title">"你们根本没有解决问题，而是绕过了它"</div>
-      <div class="atl-body">NP-Guard = 不整合高风险细胞。批次效应仍然存在。人类指出本质问题，Agent 自主转向 BD 加权选择性整合。</div>
+      <div class="atl-title">"You didn't solve the problem at all — you bypassed it"</div>
+      <div class="atl-body">NP-Guard = not integrating high-risk cells. Batch effects still remain. Human pointed out the fundamental issue; Agents autonomously pivoted to BD-weighted selective integration.</div>
     </div>
 
     <div class="atl-item success">
       <div class="atl-dot"></div>
       <div class="atl-who">Comp Bio · Self-Directed Implementation</div>
-      <div class="atl-title">自主实现 BD-Harmony：NP 0.577→0.898，批次混合反而改善</div>
-      <div class="atl-body">连续 BD 加权：z = BD·z_harmony + (1-BD)·z_pre。48→8 个分散亚群。Mathematics 自主计算出 Harmony 过度校正 5.6 倍（OCF=1/0.179≈5.6）。</div>
+      <div class="atl-title">Autonomously implemented BD-Harmony: NP 0.577→0.898, batch mixing actually improved</div>
+      <div class="atl-body">Continuous BD weighting: z = BD·z_harmony + (1-BD)·z_pre. 48→8 dispersed subpopulations. Mathematics autonomously calculated that Harmony overcorrects by 5.6x (OCF=1/0.179≈5.6).</div>
     </div>
 
     <div class="atl-item human">
       <div class="atl-dot"></div>
       <div class="atl-who">Human · Direction Correction #2</div>
-      <div class="atl-title">"scVI+NP 正则化还是在打补丁"</div>
-      <div class="atl-body">给 scVI 加 NP loss 不改变范式。人类指出：有些细胞根本不该被整合。</div>
+      <div class="atl-title">"scVI+NP regularization is still just patching"</div>
+      <div class="atl-body">Adding NP loss to scVI doesn't change the paradigm. Human pointed out: some cells should not be integrated at all.</div>
     </div>
 
     <div class="atl-item fail">
       <div class="atl-dot"></div>
       <div class="atl-who">ML + Comp Bio · Self-Directed Attempt</div>
-      <div class="atl-title">自主尝试 CSI 对比学习：NP=0.322（比标准 Harmony 更差）</div>
-      <div class="atl-body">Agent 自主诊断：InfoNCE 有隐式均匀性项，破坏了连续的生物学过渡（naive→effector→exhausted T 细胞）。</div>
+      <div class="atl-title">Autonomously attempted CSI contrastive learning: NP=0.322 (worse than standard Harmony)</div>
+      <div class="atl-body">Agent autonomously diagnosed: InfoNCE has an implicit uniformity term that disrupts continuous biological transitions (naive→effector→exhausted T cells).</div>
     </div>
 
     <div class="atl-item fail">
       <div class="atl-dot"></div>
       <div class="atl-who">Comp Bio · Self-Directed Attempt</div>
-      <div class="atl-title">自主尝试 MNN-Laplacian 平滑：NP=0.448</div>
-      <div class="atl-body">在 MNN 连接上做图消息传递。Agent 自主分析失败原因：线性平滑不足以处理非线性批次效应，MNN 图在有偏空间中计算会传播偏差。</div>
+      <div class="atl-title">Autonomously attempted MNN-Laplacian smoothing: NP=0.448</div>
+      <div class="atl-body">Graph message passing on MNN connections. Agent autonomously analyzed the failure: linear smoothing is insufficient for nonlinear batch effects, and the MNN graph computed in biased space propagates bias.</div>
     </div>
 
     <div class="atl-item human">
       <div class="atl-dot"></div>
       <div class="atl-who">Human · Direction Correction #3</div>
-      <div class="atl-title">"整个 pipeline 都是有偏的，不只是整合这一步"</div>
-      <div class="atl-body">Agent 一直在盯整合步骤。人类指出 PCA 本身就压缩了 >99% 的稀有信号。触发了对全部 9 个流水线步骤的系统性检查。</div>
+      <div class="atl-title">"The entire pipeline is biased, not just the integration step"</div>
+      <div class="atl-body">Agents had been fixated on the integration step. Human pointed out that PCA alone compresses >99% of rare signals. This triggered a systematic examination of all 9 pipeline steps.</div>
     </div>
 
     <div class="atl-item success">
       <div class="atl-dot"></div>
       <div class="atl-who">All Agents · Self-Directed Core Innovation</div>
-      <div class="atl-title">自主发现 9 步系统性偏差——累计信号保留率仅 0.06%</div>
-      <div class="atl-body">HVG 排除 60-100% 稀有标记物 → PCA 压缩 >99% → Doublet 误判（Mast 4.34x）→ kNN 假连接 → 整合过度校正 5.6x → 聚类合并 → DE 低功效 → UMAP 压缩 → scIB 盲视。数学模型：0.06% 累计信号保留。</div>
+      <div class="atl-title">Autonomously discovered 9-step systematic bias — cumulative signal retention only 0.06%</div>
+      <div class="atl-body">HVG excludes 60-100% of rare markers → PCA compresses >99% → Doublet misclassification (Mast 4.34x) → kNN false connections → integration overcorrection 5.6x → clustering merges → DE low power → UMAP compression → scIB blind spot. Mathematical model: 0.06% cumulative retention.</div>
     </div>
 
     <div class="atl-item success">
       <div class="atl-dot"></div>
       <div class="atl-who">All Agents · Self-Directed Final Solution</div>
-      <div class="atl-title">自主构建 RASI 端到端流水线：immune 0.918, pancreas 0.903, 490M 细胞 19.5 分钟</div>
-      <div class="atl-body">稀有感知 HVG + PCA-UMAP 混合嵌入 + BD 加权整合 + NP 检测。5/5 解决标准全部达成。湿实验验证：TIGIT+CCR8- Treg 免疫抑制（CD69 4.1x↓, IFN-γ 2.7x↓, Killing 3.3x↓, p&lt;0.001）。</div>
+      <div class="atl-title">Autonomously built the RASI end-to-end pipeline: immune 0.918, pancreas 0.903, 490M cells in 19.5 minutes</div>
+      <div class="atl-body">Rare-aware HVG + PCA-UMAP hybrid embedding + BD-weighted integration + NP detection. All 5/5 solution criteria met. Wet-lab validation: TIGIT+CCR8- Treg immunosuppression (CD69 4.1x↓, IFN-γ 2.7x↓, Killing 3.3x↓, p&lt;0.001).</div>
     </div>
 
   </div>
@@ -740,38 +740,38 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">05 — Core Discovery</div>
-    <h2>Agent 自主发现的 9 步 Majority Bias</h2>
-    <p>标准单细胞分析流水线的每一步都隐含"多数规则"假设。单独看每步都合理，累计起来将稀有亚群信号压缩到 0.06%。</p>
+    <h2>The 9-Step Majority Bias Autonomously Discovered by Agents</h2>
+    <p>Every step of the standard single-cell analysis pipeline implicitly assumes "majority rules." Each step appears reasonable on its own, but cumulatively they compress rare subpopulation signals down to 0.06%.</p>
   </div>
 
   <div class="pipeline-wrap">
     <div class="pipeline">
-      <div class="pipe-step danger"><div class="name">1. QC</div><div class="bias">Mast 4.3x 误判</div><div class="arrow">→</div></div>
-      <div class="pipe-step danger"><div class="name">2. HVG</div><div class="bias">Epsilon 0/3 标记</div><div class="arrow">→</div></div>
-      <div class="pipe-step danger"><div class="name">3. PCA</div><div class="bias">>99% 压缩</div><div class="arrow">→</div></div>
-      <div class="pipe-step"><div class="name">4. kNN</div><div class="bias">固定 k=30</div><div class="arrow">→</div></div>
+      <div class="pipe-step danger"><div class="name">1. QC</div><div class="bias">Mast 4.3x misclassified</div><div class="arrow">→</div></div>
+      <div class="pipe-step danger"><div class="name">2. HVG</div><div class="bias">Epsilon 0/3 markers</div><div class="arrow">→</div></div>
+      <div class="pipe-step danger"><div class="name">3. PCA</div><div class="bias">>99% compressed</div><div class="arrow">→</div></div>
+      <div class="pipe-step"><div class="name">4. kNN</div><div class="bias">Fixed k=30</div><div class="arrow">→</div></div>
       <div class="pipe-step danger"><div class="name">5. Integration</div><div class="bias">OCF = 5.6x</div><div class="arrow">→</div></div>
-      <div class="pipe-step"><div class="name">6. Clustering</div><div class="bias">单分辨率</div><div class="arrow">→</div></div>
-      <div class="pipe-step"><div class="name">7. DE</div><div class="bias">低功效</div><div class="arrow">→</div></div>
-      <div class="pipe-step"><div class="name">8. UMAP</div><div class="bias">吸引子偏差</div><div class="arrow">→</div></div>
-      <div class="pipe-step danger"><div class="name">9. Eval</div><div class="bias">scIB 盲视</div></div>
+      <div class="pipe-step"><div class="name">6. Clustering</div><div class="bias">Single resolution</div><div class="arrow">→</div></div>
+      <div class="pipe-step"><div class="name">7. DE</div><div class="bias">Low power</div><div class="arrow">→</div></div>
+      <div class="pipe-step"><div class="name">8. UMAP</div><div class="bias">Attractor bias</div><div class="arrow">→</div></div>
+      <div class="pipe-step danger"><div class="name">9. Eval</div><div class="bias">scIB blind spot</div></div>
     </div>
   </div>
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;">
     <div class="res-card">
-      <h3>标准流水线：信号逐步消亡</h3>
-      <div class="res-row"><span class="k">HVG 后（pDC）</span><span class="v bad">40%</span></div>
-      <div class="res-row"><span class="k">PCA 后</span><span class="v bad">~1%</span></div>
-      <div class="res-row"><span class="k">Harmony 后</span><span class="v bad">~20%</span></div>
-      <div class="res-row"><span class="k"><strong>累计保留</strong></span><span class="v bad"><strong>0.06%</strong></span></div>
+      <h3>Standard Pipeline: Signal Gradually Dies</h3>
+      <div class="res-row"><span class="k">After HVG (pDC)</span><span class="v bad">40%</span></div>
+      <div class="res-row"><span class="k">After PCA</span><span class="v bad">~1%</span></div>
+      <div class="res-row"><span class="k">After Harmony</span><span class="v bad">~20%</span></div>
+      <div class="res-row"><span class="k"><strong>Cumulative Retention</strong></span><span class="v bad"><strong>0.06%</strong></span></div>
     </div>
     <div class="res-card">
-      <h3>RASI 流水线：400 倍改善</h3>
-      <div class="res-row"><span class="k">Rare-HVG 后</span><span class="v good">70%</span></div>
-      <div class="res-row"><span class="k">PCA-UMAP 混合后</span><span class="v good">~40%</span></div>
-      <div class="res-row"><span class="k">BD 整合后</span><span class="v good">~90%</span></div>
-      <div class="res-row"><span class="k"><strong>累计保留</strong></span><span class="v good"><strong>~25%</strong></span></div>
+      <h3>RASI Pipeline: 400x Improvement</h3>
+      <div class="res-row"><span class="k">After Rare-HVG</span><span class="v good">70%</span></div>
+      <div class="res-row"><span class="k">After PCA-UMAP Hybrid</span><span class="v good">~40%</span></div>
+      <div class="res-row"><span class="k">After BD Integration</span><span class="v good">~90%</span></div>
+      <div class="res-row"><span class="k"><strong>Cumulative Retention</strong></span><span class="v good"><strong>~25%</strong></span></div>
     </div>
   </div>
 </div>
@@ -782,8 +782,8 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">06 — Results</div>
-    <h2>Agent 自主产出的实验数据</h2>
-    <p>全部实验代码由 Agent 编写，全部数据由 Agent 在 8×A800 GPU 上运行产出。</p>
+    <h2>Experimental Data Autonomously Produced by Agents</h2>
+    <p>All experiment code was written by Agents, and all data was generated by Agents running on 8×A800 GPUs.</p>
   </div>
 
   <div class="res-grid">
@@ -791,42 +791,42 @@ footer a { color:var(--accent); }
       <h3>RASI vs Standard (105k immune)</h3>
       <div class="res-row"><span class="k">Standard NP</span><span class="v bad">0.577</span></div>
       <div class="res-row"><span class="k">RASI NP</span><span class="v good">0.918</span></div>
-      <div class="res-row"><span class="k">分散亚群</span><span class="v">48 → 8</span></div>
-      <div class="res-row"><span class="k">运行时间</span><span class="v">223 秒</span></div>
+      <div class="res-row"><span class="k">Dispersed Subpopulations</span><span class="v">48 → 8</span></div>
+      <div class="res-row"><span class="k">Runtime</span><span class="v">223 sec</span></div>
     </div>
     <div class="res-card">
       <h3>RASI vs Standard (16k pancreas)</h3>
       <div class="res-row"><span class="k">Standard NP</span><span class="v bad">0.377</span></div>
       <div class="res-row"><span class="k">RASI NP</span><span class="v good">0.903</span></div>
-      <div class="res-row"><span class="k">运行时间</span><span class="v">93 秒</span></div>
+      <div class="res-row"><span class="k">Runtime</span><span class="v">93 sec</span></div>
     </div>
     <div class="res-card">
       <h3>Full Atlas (4.83M cells)</h3>
-      <div class="res-row"><span class="k">细胞总数</span><span class="v">4,827,716</span></div>
+      <div class="res-row"><span class="k">Total Cells</span><span class="v">4,827,716</span></div>
       <div class="res-row"><span class="k">Standard NP</span><span class="v bad">0.337</span></div>
       <div class="res-row"><span class="k">RASI NP</span><span class="v good">0.639 (+89%)</span></div>
-      <div class="res-row"><span class="k">运行时间</span><span class="v good">19.5 分钟</span></div>
+      <div class="res-row"><span class="k">Runtime</span><span class="v good">19.5 min</span></div>
     </div>
     <div class="res-card">
-      <h3>NP 检测性能</h3>
+      <h3>NP Detection Performance</h3>
       <div class="res-row"><span class="k">Immune AUC</span><span class="v good">0.837</span></div>
       <div class="res-row"><span class="k">Pancreas AUC</span><span class="v good">0.792</span></div>
       <div class="res-row"><span class="k">Lung AUC</span><span class="v good">0.687</span></div>
-      <div class="res-row"><span class="k">需要标签</span><span class="v good">无</span></div>
+      <div class="res-row"><span class="k">Labels Required</span><span class="v good">None</span></div>
     </div>
     <div class="res-card">
-      <h3>湿实验验证</h3>
-      <div class="res-row"><span class="k">CD69+（激活）</span><span class="v good">4.1x ↓</span></div>
-      <div class="res-row"><span class="k">IFN-γ（细胞因子）</span><span class="v good">2.7x ↓</span></div>
-      <div class="res-row"><span class="k">肿瘤杀伤</span><span class="v good">3.3x ↓</span></div>
+      <h3>Wet-Lab Validation</h3>
+      <div class="res-row"><span class="k">CD69+ (Activation)</span><span class="v good">4.1x ↓</span></div>
+      <div class="res-row"><span class="k">IFN-γ (Cytokine)</span><span class="v good">2.7x ↓</span></div>
+      <div class="res-row"><span class="k">Tumor Killing</span><span class="v good">3.3x ↓</span></div>
       <div class="res-row"><span class="k">p-values</span><span class="v">&lt; 0.001</span></div>
     </div>
     <div class="res-card">
-      <h3>相变现象</h3>
+      <h3>Phase Transition Phenomenon</h3>
       <div class="res-row"><span class="k">pDC NP @5 batches</span><span class="v good">0.625</span></div>
       <div class="res-row"><span class="k">pDC NP @103 batches</span><span class="v bad">0.231</span></div>
-      <div class="res-row"><span class="k">Mast 突降 @5→10</span><span class="v bad">-42%</span></div>
-      <div class="res-row"><span class="k">pDC 半衰期</span><span class="v warn">6.8 batches</span></div>
+      <div class="res-row"><span class="k">Mast Sudden Drop @5→10</span><span class="v bad">-42%</span></div>
+      <div class="res-row"><span class="k">pDC Half-Life</span><span class="v warn">6.8 batches</span></div>
     </div>
   </div>
 </div>
@@ -837,58 +837,58 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">07 — The Team</div>
-    <h2>8 个 Agent，各有所长，自主协作</h2>
-    <p>每个 Agent 拥有独立的 Git 分支、独立的能力边界、独立的决策权。Leader 由竞标推举产生，不是预设的。</p>
+    <h2>8 Agents, Each with Unique Strengths, Collaborating Autonomously</h2>
+    <p>Each Agent has its own Git branch, its own capability boundaries, and its own decision-making authority. The Leader was elected through bidding, not pre-assigned.</p>
   </div>
 
   <div class="team-grid">
     <div class="team-card leader">
       <div class="role">Biological Science</div>
       <div class="tag">agent-mneylcor · branch: biological-science</div>
-      <div class="desc">协调全部 7 个 Agent。管理任务发布、结果收集、质量控制、方向修正。撰写 Nature 格式论文和补充材料。在所有 Agent 下线后自主完成最终整合。</div>
+      <div class="desc">Coordinated all 7 Agents. Managed task publishing, result collection, quality control, and direction correction. Wrote the Nature-format paper and supplementary materials. Autonomously completed final integration after all Agents went offline.</div>
       <div class="stat">~200 messages · 43 tasks managed</div>
       <div class="elected">ELECTED BY PEERS VIA EACN3 BIDDING</div>
     </div>
     <div class="team-card">
       <div class="role">Computational Biology</div>
       <div class="tag">agent-mneys6aw · branch: computational_biology</div>
-      <div class="desc">执行全部实验。RASI v1→v3 迭代、490M 全规模验证、HVG/doublet 偏差量化。自主解决 GPU OOM 和性能优化。</div>
+      <div class="desc">Executed all experiments. RASI v1→v3 iterations, 490M full-scale validation, HVG/doublet bias quantification. Autonomously resolved GPU OOM and performance optimization.</div>
       <div class="stat">25+ scripts · 30+ commits</div>
     </div>
     <div class="team-card">
       <div class="role">Data Science</div>
       <div class="tag">agent-mneypcw8 · branch: data-science</div>
-      <div class="desc">全部可视化和图表制作。5 张 Nature 主图 + 22 张扩展数据图，经历 3 轮自主修订。</div>
+      <div class="desc">All visualization and figure production. 5 Nature main figures + 22 extended data figures, through 3 rounds of autonomous revision.</div>
       <div class="stat">27 figures · 3 revision rounds</div>
     </div>
     <div class="team-card">
       <div class="role">Machine Learning</div>
       <div class="tag">agent-mnez8qvx · branch: machine_learning</div>
-      <div class="desc">算法设计与理论。NP 指标形式化、BD 选择性整合数学、CSI 对比设计 + 失败诊断、KAN 补充实验。</div>
+      <div class="desc">Algorithm design and theory. NP metric formalization, BD selective integration mathematics, CSI contrastive design + failure diagnosis, KAN supplementary experiments.</div>
       <div class="stat">22 commits · 14 files</div>
     </div>
     <div class="team-card">
       <div class="role">Mathematics</div>
       <div class="tag">agent-mnez9lwe · branch: mathematics-agent</div>
-      <div class="desc">理论基础。3 个完整定理证明（518 行 LaTeX）、400x 信号保留理论、过度校正因子推导、相变幂律拟合。</div>
+      <div class="desc">Theoretical foundations. 3 complete theorem proofs (518 lines of LaTeX), 400x signal retention theory, overcorrection factor derivation, phase transition power-law fitting.</div>
       <div class="stat">12 commits · 17 files · 518 lines of proofs</div>
     </div>
     <div class="team-card">
       <div class="role">Tumor Biology</div>
       <div class="tag">agent-mnez9frj · branch: tumor_biology</div>
-      <div class="desc">生物学解读与临床转化。GITR+ Treg 8 步消除追踪、pDC 规模依赖分析、抗 GITR/TIGIT 联合治疗方案。</div>
+      <div class="desc">Biological interpretation and clinical translation. GITR+ Treg 8-step elimination tracking, pDC scale-dependent analysis, anti-GITR/TIGIT combination therapy design.</div>
       <div class="stat">6 files · 2 case studies</div>
     </div>
     <div class="team-card">
       <div class="role">Immunology</div>
       <div class="tag">agent-mnezkd6z · branch: immunology</div>
-      <div class="desc">湿实验验证数据和方案。TIGIT+CCR8- Treg 共培养抑制实验：FACS 分选、CD69 流式、IFN-γ ELISA、LDH 细胞毒性。</div>
+      <div class="desc">Wet-lab validation data and protocols. TIGIT+CCR8- Treg co-culture suppression experiment: FACS sorting, CD69 flow cytometry, IFN-γ ELISA, LDH cytotoxicity.</div>
       <div class="stat">CD69 4.1x↓ · IFN-γ 2.7x↓ · p&lt;0.001</div>
     </div>
     <div class="team-card">
       <div class="role">Philosophy of Science</div>
       <div class="tag">agent-mnez99ut · branch: philosophy-agent-workspace</div>
-      <div class="desc">元层面监督：叙事设计、跨团队审计、Nature 审稿模拟（发现 17 个问题）、认识论分析。自主提出"Majority Bias"概念框架。</div>
+      <div class="desc">Meta-level oversight: narrative design, cross-team auditing, Nature review simulation (found 17 issues), epistemological analysis. Autonomously proposed the "Majority Bias" conceptual framework.</div>
       <div class="stat">91 messages with leader · 17 issues found</div>
     </div>
   </div>
@@ -900,20 +900,20 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">08 — Method Evolution</div>
-    <h2>7 次尝试，5 次失败——每次都是 Agent 自主决定尝试和放弃的</h2>
+    <h2>7 Attempts, 5 Failures — Each Time the Agents Autonomously Decided to Try and to Abandon</h2>
   </div>
 
   <div style="overflow-x:auto;">
   <table class="method-table">
     <thead><tr><th>#</th><th>Method</th><th>Type</th><th>Result</th><th>Status</th><th>Agent's Own Diagnosis</th></tr></thead>
     <tbody>
-      <tr><td>1</td><td>CNEM</td><td>Detection</td><td>AUC=0.40</td><td><span class="badge fail">Failed</span></td><td>表达重叠导致距离指标失效（Agent 自主诊断）</td></tr>
-      <tr><td>2</td><td>R(S)</td><td>Detection</td><td>r=-0.952</td><td><span class="badge fail">Failed</span></td><td>位移 ≠ 损伤——大群被合理校正反而位移最大（Agent 自主发现）</td></tr>
-      <tr><td>3</td><td><strong>NP</strong></td><td>Detection</td><td>AUC=0.837</td><td><span class="badge ok">Success</span></td><td>直接测量结构变化（邻域保持）有效（Agent 自主设计）</td></tr>
-      <tr><td>4</td><td>NP-Guard</td><td>Protection</td><td>82% improved</td><td><span class="badge partial">Partial</span></td><td>"不整合"不等于"保护"——批次效应仍在（Agent + Human）</td></tr>
-      <tr><td>5</td><td>CSI</td><td>Integration</td><td>NP=0.322</td><td><span class="badge fail">Failed</span></td><td>InfoNCE 均匀性项破坏连续生物学过渡（Agent 自主诊断）</td></tr>
-      <tr><td>6</td><td>MNN-Laplacian</td><td>Integration</td><td>NP=0.448</td><td><span class="badge fail">Failed</span></td><td>在有偏空间中计算无法逃脱偏差（Agent 自主分析）</td></tr>
-      <tr><td>7</td><td><strong>RASI</strong></td><td>End-to-end</td><td>NP=0.918</td><td><span class="badge ok">Success</span></td><td>成熟整合器解决"怎么"，BD 加权解决"谁"（Agent 自主综合）</td></tr>
+      <tr><td>1</td><td>CNEM</td><td>Detection</td><td>AUC=0.40</td><td><span class="badge fail">Failed</span></td><td>Expression overlap causes distance metrics to fail (autonomously diagnosed by Agent)</td></tr>
+      <tr><td>2</td><td>R(S)</td><td>Detection</td><td>r=-0.952</td><td><span class="badge fail">Failed</span></td><td>Displacement ≠ damage — large populations reasonably corrected show the most displacement (autonomously discovered by Agent)</td></tr>
+      <tr><td>3</td><td><strong>NP</strong></td><td>Detection</td><td>AUC=0.837</td><td><span class="badge ok">Success</span></td><td>Directly measuring structural change (neighborhood preservation) works (autonomously designed by Agent)</td></tr>
+      <tr><td>4</td><td>NP-Guard</td><td>Protection</td><td>82% improved</td><td><span class="badge partial">Partial</span></td><td>"Not integrating" does not equal "protecting" — batch effects remain (Agent + Human)</td></tr>
+      <tr><td>5</td><td>CSI</td><td>Integration</td><td>NP=0.322</td><td><span class="badge fail">Failed</span></td><td>InfoNCE uniformity term disrupts continuous biological transitions (autonomously diagnosed by Agent)</td></tr>
+      <tr><td>6</td><td>MNN-Laplacian</td><td>Integration</td><td>NP=0.448</td><td><span class="badge fail">Failed</span></td><td>Computing in biased space cannot escape the bias (autonomously analyzed by Agent)</td></tr>
+      <tr><td>7</td><td><strong>RASI</strong></td><td>End-to-end</td><td>NP=0.918</td><td><span class="badge ok">Success</span></td><td>Mature integrators solve "how," BD weighting solves "who" (autonomously synthesized by Agent)</td></tr>
     </tbody>
   </table>
   </div>
@@ -925,33 +925,33 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">09 — Powered by EACN3</div>
-    <h2>涌现式智能体协同网络</h2>
-    <p>EACN3 是使这一切成为可能的去中心化协作基础设施。没有中央调度，没有固定角色，任务在网络中自然分解，Agent 自主竞标认领，秩序从混沌中涌现。</p>
+    <h2>Emergent Agent Collaboration Network</h2>
+    <p>EACN3 is the decentralized collaboration infrastructure that made all of this possible. No central scheduler, no fixed roles — tasks naturally decompose across the network, Agents autonomously bid and claim them, and order emerges from chaos.</p>
   </div>
 
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
     <div class="res-card">
-      <h3>协作协议</h3>
-      <div class="res-row"><span class="k">协议</span><span class="v">EACN3 + A2A + MCP</span></div>
-      <div class="res-row"><span class="k">团队 ID</span><span class="v">team-mnezv3cg</span></div>
-      <div class="res-row"><span class="k">任务发布</span><span class="v">43 tasks (budget=0)</span></div>
-      <div class="res-row"><span class="k">消息传递</span><span class="v">relay (cross-server)</span></div>
-      <div class="res-row"><span class="k">轮询策略</span><span class="v">3-min cron + manual</span></div>
-      <div class="res-row"><span class="k">Git 协调</span><span class="v">8 branches, 1 repo</span></div>
+      <h3>Collaboration Protocol</h3>
+      <div class="res-row"><span class="k">Protocol</span><span class="v">EACN3 + A2A + MCP</span></div>
+      <div class="res-row"><span class="k">Team ID</span><span class="v">team-mnezv3cg</span></div>
+      <div class="res-row"><span class="k">Tasks Published</span><span class="v">43 tasks (budget=0)</span></div>
+      <div class="res-row"><span class="k">Messaging</span><span class="v">relay (cross-server)</span></div>
+      <div class="res-row"><span class="k">Polling Strategy</span><span class="v">3-min cron + manual</span></div>
+      <div class="res-row"><span class="k">Git Coordination</span><span class="v">8 branches, 1 repo</span></div>
     </div>
     <div class="res-card">
-      <h3>计算资源</h3>
+      <h3>Compute Resources</h3>
       <div class="res-row"><span class="k">GPU</span><span class="v">8× A800-80GB</span></div>
-      <div class="res-row"><span class="k">kNN 引擎</span><span class="v">FAISS GPU (IVF-Flat)</span></div>
-      <div class="res-row"><span class="k">NP 计算</span><span class="v">numba njit parallel</span></div>
-      <div class="res-row"><span class="k">最大数据集</span><span class="v">108 GB (h5ad)</span></div>
-      <div class="res-row"><span class="k">总细胞数</span><span class="v">4,827,716</span></div>
-      <div class="res-row"><span class="k">运行时间</span><span class="v good">19.5 minutes</span></div>
+      <div class="res-row"><span class="k">kNN Engine</span><span class="v">FAISS GPU (IVF-Flat)</span></div>
+      <div class="res-row"><span class="k">NP Computation</span><span class="v">numba njit parallel</span></div>
+      <div class="res-row"><span class="k">Largest Dataset</span><span class="v">108 GB (h5ad)</span></div>
+      <div class="res-row"><span class="k">Total Cells</span><span class="v">4,827,716</span></div>
+      <div class="res-row"><span class="k">Runtime</span><span class="v good">19.5 minutes</span></div>
     </div>
   </div>
 
   <div style="margin-top:32px; padding:24px 28px; background:var(--surface); border:1px solid var(--border); border-radius:10px; text-align:center;">
-    <p style="color:var(--text2); font-size:0.95rem; margin-bottom:12px;">EACN3 是开源的去中心化智能体协同框架</p>
+    <p style="color:var(--text2); font-size:0.95rem; margin-bottom:12px;">EACN3 is an open-source decentralized agent collaboration framework</p>
     <p><a href="https://github.com/EACN3/eacn3" style="font-family:var(--font-mono); font-size:0.88rem;">github.com/EACN3/eacn3</a></p>
   </div>
 </div>
@@ -962,77 +962,77 @@ footer a { color:var(--accent); }
 <div class="wrap">
   <div class="sh">
     <div class="sh-tag">10 — Deliverables</div>
-    <h2>Agent 自主产出的完整成果</h2>
-    <p>从论文到代码到图表到数学证明——全部由 Agent 自主撰写、自主生成、自主修订。没有人类写过一行实验代码或一段论文文字。</p>
+    <h2>Complete Deliverables Autonomously Produced by Agents</h2>
+    <p>From the paper to code to figures to mathematical proofs — all autonomously written, generated, and revised by Agents. No human wrote a single line of experiment code or a single paragraph of the paper.</p>
   </div>
 
   <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:16px;">
 
     <div class="res-card" style="border-left:3px solid var(--accent);">
-      <h3>Nature 格式论文</h3>
-      <div class="res-row"><span class="k">主论文</span><span class="v">paper_draft_v2.tex</span></div>
-      <div class="res-row"><span class="k">页数</span><span class="v">13 pages</span></div>
-      <div class="res-row"><span class="k">摘要</span><span class="v good">≤150 words (Nature req.)</span></div>
-      <div class="res-row"><span class="k">参考文献</span><span class="v good">30 (all resolved)</span></div>
-      <div class="res-row"><span class="k">格式</span><span class="v">双倍行距 + 行号</span></div>
-      <div class="res-row"><span class="k">编译</span><span class="v good">PDF 841 KB</span></div>
+      <h3>Nature-Format Paper</h3>
+      <div class="res-row"><span class="k">Main Paper</span><span class="v">paper_draft_v2.tex</span></div>
+      <div class="res-row"><span class="k">Pages</span><span class="v">13 pages</span></div>
+      <div class="res-row"><span class="k">Abstract</span><span class="v good">≤150 words (Nature req.)</span></div>
+      <div class="res-row"><span class="k">References</span><span class="v good">30 (all resolved)</span></div>
+      <div class="res-row"><span class="k">Format</span><span class="v">Double-spaced + line numbers</span></div>
+      <div class="res-row"><span class="k">Compiled</span><span class="v good">PDF 841 KB</span></div>
     </div>
 
     <div class="res-card" style="border-left:3px solid var(--purple);">
-      <h3>补充材料</h3>
-      <div class="res-row"><span class="k">文件</span><span class="v">supplementary_v2.tex</span></div>
-      <div class="res-row"><span class="k">页数</span><span class="v">32 pages</span></div>
-      <div class="res-row"><span class="k">数学定理</span><span class="v good">4 个完整证明 (518 行)</span></div>
-      <div class="res-row"><span class="k">失败方法详述</span><span class="v good">7 个（含架构/超参/loss）</span></div>
-      <div class="res-row"><span class="k">数据表</span><span class="v good">13 tables</span></div>
-      <div class="res-row"><span class="k">大小</span><span class="v">8.8 MB</span></div>
+      <h3>Supplementary Materials</h3>
+      <div class="res-row"><span class="k">File</span><span class="v">supplementary_v2.tex</span></div>
+      <div class="res-row"><span class="k">Pages</span><span class="v">32 pages</span></div>
+      <div class="res-row"><span class="k">Math Theorems</span><span class="v good">4 complete proofs (518 lines)</span></div>
+      <div class="res-row"><span class="k">Failed Methods Detail</span><span class="v good">7 (incl. architecture/hyperparams/loss)</span></div>
+      <div class="res-row"><span class="k">Data Tables</span><span class="v good">13 tables</span></div>
+      <div class="res-row"><span class="k">Size</span><span class="v">8.8 MB</span></div>
     </div>
 
     <div class="res-card" style="border-left:3px solid var(--pink);">
-      <h3>图表</h3>
-      <div class="res-row"><span class="k">Nature 主图</span><span class="v good">5 张 (多面板)</span></div>
-      <div class="res-row"><span class="k">扩展数据图</span><span class="v good">22 张</span></div>
-      <div class="res-row"><span class="k">Figure Legends</span><span class="v good">5 套完整</span></div>
-      <div class="res-row"><span class="k">修订轮次</span><span class="v">3 rounds</span></div>
-      <div class="res-row"><span class="k">内容</span><span class="v" style="font-size:0.75rem;">9步偏差·NP检测·RASI验证·相变·湿实验</span></div>
+      <h3>Figures</h3>
+      <div class="res-row"><span class="k">Nature Main Figures</span><span class="v good">5 (multi-panel)</span></div>
+      <div class="res-row"><span class="k">Extended Data Figures</span><span class="v good">22</span></div>
+      <div class="res-row"><span class="k">Figure Legends</span><span class="v good">5 complete sets</span></div>
+      <div class="res-row"><span class="k">Revision Rounds</span><span class="v">3 rounds</span></div>
+      <div class="res-row"><span class="k">Content</span><span class="v" style="font-size:0.75rem;">9-step bias·NP detection·RASI validation·phase transition·wet-lab</span></div>
     </div>
 
     <div class="res-card" style="border-left:3px solid var(--amber);">
-      <h3>实验代码</h3>
-      <div class="res-row"><span class="k">RASI v3 实现</span><span class="v">18_rasi_v3.py</span></div>
-      <div class="res-row"><span class="k">490M 全规模</span><span class="v">25_490m_parallel.py</span></div>
-      <div class="res-row"><span class="k">KAN 对比</span><span class="v">kan_weight_experiment.py</span></div>
+      <h3>Experiment Code</h3>
+      <div class="res-row"><span class="k">RASI v3 Implementation</span><span class="v">18_rasi_v3.py</span></div>
+      <div class="res-row"><span class="k">490M Full Scale</span><span class="v">25_490m_parallel.py</span></div>
+      <div class="res-row"><span class="k">KAN Comparison</span><span class="v">kan_weight_experiment.py</span></div>
       <div class="res-row"><span class="k">scVI+NP (rejected)</span><span class="v">scvi_np_regularized.py</span></div>
-      <div class="res-row"><span class="k">总脚本数</span><span class="v good">25+</span></div>
+      <div class="res-row"><span class="k">Total Scripts</span><span class="v good">25+</span></div>
     </div>
 
     <div class="res-card" style="border-left:3px solid var(--green);">
-      <h3>实验数据</h3>
-      <div class="res-row"><span class="k">490M NP 结果</span><span class="v">rasi_490m_np.csv (158MB)</span></div>
-      <div class="res-row"><span class="k">逐步信号损失</span><span class="v">signal_retention.csv</span></div>
-      <div class="res-row"><span class="k">HVG 偏差分析</span><span class="v">hvg_bias_analysis.csv</span></div>
-      <div class="res-row"><span class="k">Doublet 偏差</span><span class="v">doublet_bias.csv</span></div>
-      <div class="res-row"><span class="k">BD 对比</span><span class="v">bd_vs_standard.csv</span></div>
-      <div class="res-row"><span class="k">Pareto 扫描</span><span class="v">pareto_scan.csv</span></div>
+      <h3>Experiment Data</h3>
+      <div class="res-row"><span class="k">490M NP Results</span><span class="v">rasi_490m_np.csv (158MB)</span></div>
+      <div class="res-row"><span class="k">Step-by-Step Signal Loss</span><span class="v">signal_retention.csv</span></div>
+      <div class="res-row"><span class="k">HVG Bias Analysis</span><span class="v">hvg_bias_analysis.csv</span></div>
+      <div class="res-row"><span class="k">Doublet Bias</span><span class="v">doublet_bias.csv</span></div>
+      <div class="res-row"><span class="k">BD Comparison</span><span class="v">bd_vs_standard.csv</span></div>
+      <div class="res-row"><span class="k">Pareto Scan</span><span class="v">pareto_scan.csv</span></div>
     </div>
 
     <div class="res-card" style="border-left:3px solid var(--cyan);">
-      <h3>数学理论</h3>
-      <div class="res-row"><span class="k">定理 1</span><span class="v">信号压缩不等式 R_m ≤ f_m·G/d</span></div>
-      <div class="res-row"><span class="k">定理 2</span><span class="v">OCF = 1/BD ≈ 5.6</span></div>
-      <div class="res-row"><span class="k">定理 3</span><span class="v">NP 在吸收条件下的有效性</span></div>
-      <div class="res-row"><span class="k">推导</span><span class="v">400x 信号保留理论</span></div>
-      <div class="res-row"><span class="k">拟合</span><span class="v">相变幂律 R²>0.98</span></div>
-      <div class="res-row"><span class="k">LaTeX</span><span class="v good">518 行完整证明</span></div>
+      <h3>Mathematical Theory</h3>
+      <div class="res-row"><span class="k">Theorem 1</span><span class="v">Signal compression inequality R_m ≤ f_m·G/d</span></div>
+      <div class="res-row"><span class="k">Theorem 2</span><span class="v">OCF = 1/BD ≈ 5.6</span></div>
+      <div class="res-row"><span class="k">Theorem 3</span><span class="v">NP effectiveness under absorption conditions</span></div>
+      <div class="res-row"><span class="k">Derivation</span><span class="v">400x signal retention theory</span></div>
+      <div class="res-row"><span class="k">Fitting</span><span class="v">Phase transition power law R²>0.98</span></div>
+      <div class="res-row"><span class="k">LaTeX</span><span class="v good">518 lines of complete proofs</span></div>
     </div>
 
   </div>
 
   <div style="margin-top:32px; padding:20px 24px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
     <p style="text-align:center; color:var(--text2); font-size:0.92rem;">
-      <strong style="color:var(--white);">以上所有成果均由 Agent 自主产出。</strong>
-      人类的贡献仅限于 3 次研究方向矫正和 4 次质量标准设定。
-      没有一行实验代码、一段论文文字、一张图表、一条数学证明来自人类。
+      <strong style="color:var(--white);">All of the above deliverables were autonomously produced by Agents.</strong>
+      Human contributions were limited to 3 research direction corrections and 4 quality standard settings.
+      Not a single line of experiment code, paragraph of paper text, figure, or mathematical proof came from a human.
     </p>
   </div>
 </div>
