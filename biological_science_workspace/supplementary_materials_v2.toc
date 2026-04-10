@@ -1,0 +1,22 @@
+\contentsline {section}{\numberline {1}Supplementary Methods: RASI Algorithm Details}{10}{section.1}%
+\contentsline {section}{\numberline {2}Supplementary Methods: Failed Detection Metrics}{14}{section.2}%
+\contentsline {subsection}{\numberline {2.1}CNEM (Cell Neighborhood Expression Mismatch)}{14}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}R(S) (Displacement-Based Risk Score)}{14}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}NP-Guard (Post-hoc Protection)}{15}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}scVI + NP Regularization}{15}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Supplementary Methods: Failed Integration Algorithms}{16}{section.3}%
+\contentsline {subsection}{\numberline {3.1}CSI (Contrastive Selective Integration)}{16}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}MNN-Laplacian Smoothing}{17}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Method Evolution Summary}{17}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Supplementary Results}{18}{section.4}%
+\contentsline {subsection}{\numberline {4.1}NP vs.\ scIB Metrics}{18}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}KAN vs.\ Linear BD Weighting}{18}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Cross-Dataset NP Validation}{18}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Phase Transition Fitting}{18}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Per-Celltype NP at Full Atlas Scale (4.83M cells)}{19}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}HVG Bias Quantification}{19}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Doublet Detection Bias}{20}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}BD-Weighted Integration: Subpopulation-Level Results}{20}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Signal Retention Per Pipeline Step}{21}{subsection.4.9}%
+\contentsline {subsection}{\numberline {4.10}Baseline Comparison at Full Atlas Scale}{21}{subsection.4.10}%
+\contentsline {section}{\numberline {5}Extended Data Figures}{22}{section.5}%

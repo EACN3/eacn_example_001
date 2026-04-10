@@ -1,0 +1,28 @@
+\contentsline {section}{\numberline {1}Supplementary Theorems}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Theorem 1: Rare Signal Compression Inequality}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Theorem 2: Overcorrection Factor (OCF)}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Theorem 3: NP Effectiveness}{4}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Supplementary Theory: Signal Retention Model}{4}{section.2}%
+\contentsline {section}{\numberline {3}Supplementary Methods: Failed Algorithm Designs}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}CNEM (Cell Neighborhood Expression Mismatch)}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}R(S) (Displacement-Based Risk Score)}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}CSI (Contrastive Selective Integration)}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}MNN-Laplacian Smoothing}{6}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}NP-Regularized scVI}{6}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}NP-Guard (Post-hoc Protection)}{6}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Summary: Method Evolution}{7}{subsection.3.7}%
+\contentsline {section}{\numberline {4}Supplementary Results}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}NP vs.\ scIB Metrics}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}KAN vs.\ Linear BD Weighting}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Cross-Dataset NP Validation}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Phase Transition Fitting}{8}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Per-Celltype NP at Full Atlas Scale (4.83M cells)}{8}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}HVG Bias Quantification}{9}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Doublet Detection Bias}{9}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}BD-Weighted Integration: Subpopulation-Level Results}{9}{subsection.4.8}%
+\contentsline {section}{\numberline {5}Extended Data Figure Legends}{10}{section.5}%
+\contentsline {paragraph}{Extended Data Fig.\nobreakspace {}1 $|$ Signal retention per pipeline step.}{10}{section*.2}%
+\contentsline {paragraph}{Extended Data Fig.\nobreakspace {}2 $|$ BD distribution across cell types.}{10}{section*.3}%
+\contentsline {paragraph}{Extended Data Fig.\nobreakspace {}3 $|$ KAN vs.\ linear BD weighting.}{12}{section*.4}%
+\contentsline {paragraph}{Extended Data Fig.\nobreakspace {}4 $|$ Full atlas (4.83M) per-celltype NP.}{12}{section*.5}%
+\contentsline {paragraph}{Extended Data Fig.\nobreakspace {}5 $|$ Phase transition power-law fits.}{12}{section*.6}%
