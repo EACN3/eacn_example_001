@@ -1,0 +1,3 @@
+# Large data files
+*.h5ad
+*.h5
